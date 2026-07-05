@@ -1,0 +1,654 @@
+/* NOHEMI Variable (principal) */
+@font-face {
+    font-family: "Nohemi";
+    src: url("Nohemi-VF-BF6438cc58ad63d.ttf") format("truetype");
+    font-weight: 100 900;
+    font-stretch: 100%;
+    font-style: normal;
+    font-display: swap;
+}
+
+/* NOHEMI fallbacks por peso */
+@font-face {
+    font-family: "Nohemi";
+    src: url("Nohemi-Thin-BF6438cc57ef3bf.otf") format("opentype"), url("Nohemi-Thin-BF6438cc57ef3bf.ttf") format("truetype");
+    font-weight: 100;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "Nohemi";
+    src: url("Nohemi-ExtraLight-BF6438cc57e06d5.otf") format("opentype"), url("Nohemi-ExtraLight-BF6438cc58a2634.ttf") format("truetype");
+    font-weight: 200;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "Nohemi";
+    src: url("Nohemi-Light-BF6438cc58f570b.otf") format("opentype"), url("Nohemi-Light-BF6438cc5899919.ttf") format("truetype");
+    font-weight: 300;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "Nohemi";
+    src: url("Nohemi-Regular-BF6438cc5b98ffc.otf") format("opentype"), url("Nohemi-Regular-BF6438cc5b98f6c.ttf") format("truetype");
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "Nohemi";
+    src: url("Nohemi-Medium-BF6438cc588a399.otf") format("opentype"), url("Nohemi-Medium-BF6438cc5883899.ttf") format("truetype");
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "Nohemi";
+    src: url("Nohemi-SemiBold-BF6438cc588a48a.otf") format("opentype"), url("Nohemi-SemiBold-BF6438cc588b5e5.ttf") format("truetype");
+    font-weight: 600;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "Nohemi";
+    src: url("Nohemi-Bold-BF6438cc5b7b5b5.otf") format("opentype"), url("Nohemi-Bold-BF6438cc5812315.ttf") format("truetype");
+    font-weight: 700;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "Nohemi";
+    src: url("Nohemi-ExtraBold-BF6438cc58a4c3c.otf") format("opentype"), url("Nohemi-ExtraBold-BF6438cc5881baf.ttf") format("truetype");
+    font-weight: 800;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "Nohemi";
+    src: url("Nohemi-Black-BF6438cc5874bd2.otf") format("opentype"), url("Nohemi-Black-BF6438cc58744d4.ttf") format("truetype");
+    font-weight: 900;
+    font-style: normal;
+    font-display: swap;
+}
+
+/* DENTON TEST (serif para títulos) */
+@font-face {
+    font-family: "Denton Test";
+    src: url("Denton Test Thin 100.ttf") format("opentype");
+    font-weight: 100;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "Denton Test";
+    src: url("Denton Test Light 300.ttf") format("opentype");
+    font-weight: 300;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "Denton Test";
+    src: url("Denton Test Regular 400.ttf") format("opentype");
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "Denton Test";
+    src: url("Denton Test Medium 500.ttf") format("opentype");
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "Denton Test";
+    src: url("Denton Test Bold 700.ttf") format("opentype");
+    font-weight: 700;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "Denton Test";
+    src: url("Denton Test ExtraBold 800.ttf") format("opentype");
+    font-weight: 800;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "Denton Test";
+    src: url("Denton Test Black 900.ttf") format("opentype");
+    font-weight: 900;
+    font-style: normal;
+    font-display: swap;
+}
+
+/* =========================================================
+   BASE / VARIABLES
+   ========================================================= */
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+img {
+    display: block;
+    max-width: 100%;
+    height: auto;
+}
+
+button {
+    border: 0;
+    cursor: pointer;
+}
+
+input,
+button {
+    font: inherit;
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Cinzel+Decorative:wght@400;700&display=swap');
+
+:root {
+    --font-sans: "Cormorant Garamond", serif;
+    --font-serif: "Cinzel Decorative", serif;
+
+    /* --- PALETA "THE WITCHERY" (Opulencia Gótica/Victoriana) --- */
+    --cream: #430303;
+    /* Negro profundo casi obsidiana */
+    --panel: #2B0A0F;
+    /* Terciopelo rojo oscuro / Borgoña muy profundo */
+    --ink: #2B0A0F;
+    /* Pergamino claro / Marfil para texto legible */
+    --muted: #cba153;
+    /* Dorado gastado (Antique Gold) */
+    --rose: #A68141;
+    --rose-strong: #E5C378;
+    /* Dorado brillante para destellos */
+    --icon-bg: #1A0508;
+    --mint: #4A0B11;
+    /* Rojo sangre oscuro para botones */
+    --mint-ink: #F0E6D2;
+    --border: #8A6D3B;
+    /* Dorado oscuro para bordes de cuadros */
+}
+
+body {
+    /* OPCIÓN 1: Degradado Radial (Efecto viñeta/foco central, muy elegante y oscuro) */
+    background: radial-gradient(circle at top center, var(--panel) 0%, var(--icon-bg) 60%, #0a0203 100%);
+
+    /* OPCIÓN 2 (Alternativa): Descomenta la línea de abajo y comenta la de arriba si prefieres un degradado lineal clásico */
+    /*background: linear-gradient(135deg, var(--icon-bg) 0%, var(--panel) 50%, var(--cream) 100%);
+
+    /* Agregamos fixed para que el degradado no se rompa o repita si el usuario hace mucho scroll */
+    background-attachment: fixed;
+
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    min-height: 100svh;
+    padding-bottom: 20px;
+    font-family: var(--font-sans);
+    color: var(--ink);
+}
+
+/* =========================================================
+   CONTENEDOR
+   ========================================================= */
+
+.container {
+    margin-left: 25px;
+    margin-right: 25px;
+    margin-bottom: 50px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: min(700px, 100%);
+    gap: 90px;
+    overflow: hidden;
+}
+
+/* =========================================================
+   HEADER / TOP con ilustración de fondo (fondo.png)
+   ========================================================= */
+
+.top {
+    height: 75vh;
+
+    background-repeat: no-repeat;
+    background-position: center top;
+    background-size: 700px auto;
+    /* Elegís el ancho */
+    background-attachment: fixed;
+}
+
+.top img {
+    border-radius: 200px 200px 8px 8px;
+    /* Arco gótico muy pronunciado arriba */
+    border: 5px solid var(--border);
+    outline: 2px solid var(--border);
+    outline-offset: 4px;
+    /* Efecto marco doble separado */
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.9);
+    object-fit: cover;
+}
+
+
+/* =========================================================
+   BLOQUE DE INFORMACIÓN (EFECTO VIDRIO COMBINADO)
+   ========================================================= */
+
+.info {
+    width: 65%;
+    /* Reducido de 80% a 65% (puedes ajustar este número a tu gusto) */
+    margin: 0 auto;
+    /* Añadido para mantener el cuadro centrado */
+    background-color: var(--glass-panel);
+    backdrop-filter: blur(0px);
+    -webkit-backdrop-filter: blur(0px);
+    border: 1px solid var(--glass-border);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+    display: grid;
+    border-radius: 20px;
+    overflow: hidden;
+}
+
+/* El resto de tus clases .info_item y .item se mantienen exactamente igual */
+.info_item {
+    display: grid;
+    grid-template-columns: 55px 1fr;
+    gap: 18px;
+    align-items: center;
+    padding: 0px 5px;
+    border-bottom: 1px solid var(--border);
+    transition: background-color 0.3s ease;
+}
+
+.info_item:hover {
+    background-color: rgba(255, 255, 255, 0.3);
+}
+
+.info_item:last-child {
+    border-bottom: none;
+}
+
+.info_item>img {
+    width: 55px;
+    height: 55px;
+    background-color: var(--icon-bg);
+    border-radius: 16px;
+    object-fit: contain;
+    padding: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+    border: 1px solid var(--border);
+}
+
+.item h3 {
+    font-size: 13px;
+    font-weight: 600;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 4px;
+    letter-spacing: .1em;
+}
+
+.item p {
+    font-family: var(--font-serif);
+    letter-spacing: 0.5px;
+    font-weight: 500;
+    font-size: 18px;
+    color: var(--ink);
+}
+
+.maps {
+    margin: -50px auto 0;
+    /* Actualizado: mantiene el -50px arriba y lo centra a los lados */
+    width: 65%;
+    /* Cambiado para que coincida con el ancho de .info */
+    background: var(--glass-panel);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid var(--glass-border);
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 15px;
+    transition: transform 0.2s ease;
+}
+
+.maps:hover {
+    transform: translateY(-2px);
+}
+
+.maps a {
+    font-family: var(--font-sans);
+    color: var(--ink);
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    text-align: center;
+}
+
+/* =========================================================
+   RESPONSIVE DESIGN (MEDIA QUERIES AGRUPADOS)
+   ========================================================= */
+@media (max-width: 550px) {
+
+    .info,
+    .maps {
+        width: 100%;
+    }
+}
+
+/* =========================================================
+   FORMULARIO
+   ========================================================= */
+
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 30px;
+    padding: 18px 16px 8px;
+}
+
+form p {
+    font-family: var(--font-serif);
+    font-weight: 100;
+    letter-spacing: 1px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    width: 75%;
+}
+
+form input {
+    font-family: var(--font-sans);
+    font-weight: 300;
+    width: 100%;
+    background: var(--cream);
+    border: none;
+    border-bottom: .5px solid var(--border);
+    padding: 14px 14px;
+    color: var(--ink);
+    outline: none;
+}
+
+form input::placeholder {
+    color: var(--muted);
+    letter-spacing: .05em;
+    opacity: 0.7;
+}
+
+form input:focus {
+    background: var(--panel);
+    color: var(--ink);
+    border-bottom: 1px solid var(--rose-strong);
+}
+
+form button {
+    font-family: var(--font-sans);
+    font-size: 18px;
+    width: 100%;
+    margin-top: 6px;
+    padding: 30px;
+    border-radius: 12px;
+    background: var(--mint);
+    color: var(--mint-ink);
+    font-weight: 300;
+    letter-spacing: 2px;
+}
+
+form button:hover {
+    filter: brightness(.98);
+}
+
+form button:active {
+    transform: translateY(1px) scale(.995);
+}
+
+a {
+    text-decoration: none;
+    width: 100%;
+}
+
+a button {
+    font-size: 16px;
+    width: 100%;
+    margin-top: 6px;
+    padding: 14px 16px;
+    border-radius: 8px;
+    background-color: var(--panel);
+    border: 1px solid var(--border);
+    color: var(--ink);
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+}
+
+.gift {
+    width: 70%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    padding: 18px 16px 8px;
+}
+
+.gift p {
+    font-family: var(--font-serif);
+    font-weight: 100;
+    letter-spacing: 1px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    width: 75%;
+}
+
+@media (max-width:550px) {
+    .gift {
+        width: 100%;
+    }
+
+    .gift p {
+        width: 100%;
+    }
+}
+
+.cv {
+    font-family: var(--font-sans);
+    background-color: var(--panel);
+    border: 1px solid var(--border);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    gap: 15px;
+    border-radius: 8px;
+    padding: 15px;
+    color: var(--rose-strong);
+}
+
+.cv button {
+    font-family: var(--font-sans);
+    font-size: 15px;
+    font-weight: 500;
+    background-color: var(--mint);
+    color: var(--mint-ink);
+    border: 1px solid var(--border);
+    letter-spacing: 1px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    gap: 15px;
+    border-radius: 8px;
+    padding: 15px;
+}
+
+/*FOOTER / CONTACTO*/
+
+.share {
+    width: 70%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    padding: 18px 16px 8px;
+}
+
+.share p {
+    font-family: var(--font-serif);
+    font-weight: 100;
+    letter-spacing: 1px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    width: 75%;
+}
+
+@media (max-width:550px) {
+    .share {
+        width: 100%;
+    }
+
+    .share p {
+        width: 100%;
+    }
+}
+
+.share button {
+    font-family: var(--font-sans);
+    font-size: 15px;
+    font-weight: 600;
+    background-color: var(--mint);
+    letter-spacing: 1px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    gap: 15px;
+    color: var(--mint-ink);
+    border-radius: 8px;
+    padding: 25px;
+}
+
+.share .contact {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.share .contact h2 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    letter-spacing: 1px;
+    font-size: 12px;
+    font-weight: 300;
+    color: var(--rose-strong);
+    margin-bottom: 4px;
+    text-transform: uppercase;
+}
+
+.share .contact p {
+    text-transform: uppercase;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    font-family: var(--font-serif);
+    letter-spacing: 2px;
+    font-size: 14px;
+    color: var(--rose-strong);
+    letter-spacing: 2px;
+}
+
+
+@media (max-width:360px) {
+    .container {
+        border-radius: 12px;
+    }
+
+    .top {
+        padding: 28px 16px 30px;
+    }
+
+    .description h2 {
+        font-size: 48px;
+    }
+}
+
+@media (min-width:401px) {
+    body {
+        padding-block: 28px;
+    }
+}
+
+
+/*
+#confetti-canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    /* para que no bloquee clicks */
+/*z-index: 9999;
+    /* encima de todo */
+
+
+.texto-llamado {
+    color: var(--rose-strong);
+    font-style: italic;
+    font-family: var(--font-serif);
+    font-weight: 600;
+    font-size: 18px;
+
+}
+
+.titulo-bloque {
+    font-family: var(--font-sans);
+    font-style: italic;
+    color: var(--panel);
+    text-transform: uppercase;
+    letter-spacing: 5px;
+    font-weight: 300;
+    font-size: 32px;
+    padding: 10px 10px 0px 10px;
+    margin-bottom: -30px;
+    border-bottom: 1px solid var(--border);
+    text-align: center;
+}
