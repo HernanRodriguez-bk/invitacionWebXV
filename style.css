@@ -1,29 +1,69 @@
-/* =========================================================
-   FUENTES Y BASE / VARIABLES
-   ========================================================= */
-@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Cinzel+Decorative:wght@400;700&display=swap');
+/* ==========================================================
+   SISTEMA VISUAL · MIS XV ADA
+   Director de Arte: Elegancia Silenciosa
+   Paleta: The Witchery — Borgoña, Marfil, Oro
+   ========================================================== */
 
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&family=Cinzel+Decorative:wght@400;700&family=Great+Vibes&display=swap');
+
+/* ==========================================================
+   I. DESIGN TOKENS
+   ========================================================== */
 :root {
-    --font-sans: "Cormorant Garamond", serif;
-    --font-serif: "Cinzel Decorative", serif;
+    /* Tipografía */
+    --font-body: "Cormorant Garamond", serif;
+    --font-title: "Cinzel Decorative", serif;
 
-    /* --- PALETA "THE WITCHERY" --- */
-    --cream: #430303;
+    /* Paleta The Witchery — sin cambios */
+    --base: #4A0D15;
+    /* Borgoña base */
     --panel: #2B0A0F;
     --ink: #2B0A0F;
     --muted: #cba153;
-    --rose: #A68141;
-    --rose-strong: #E5C378;
+    --gold: #A68141;
+    --gold-light: #E5C378;
     --icon-bg: #1A0508;
-    --mint: #4A0B11;
-    --mint-ink: #F0E6D2;
+    --deep: #4A0B11;
+    --cream: #F0E6D2;
     --border: #8A6D3B;
 
-    /* Fallbacks para variables utilizadas pero no definidas previamente */
-    --glass-panel: rgba(43, 10, 15, 0.3);
-    --glass-border: rgba(255, 255, 255, 0.1);
+    /* Alias semánticos */
+    --text-primary: var(--cream);
+    --text-secondary: var(--gold-light);
+    --text-muted: rgba(240, 230, 210, 0.55);
+
+    /* Capas de superficie — papel fino en lugar de glassmorphism */
+    --surface: rgba(26, 5, 8, 0.82);
+    --surface-raised: rgba(18, 3, 5, 0.90);
+    --surface-border: rgba(138, 109, 59, 0.35);
+
+    /* Espaciado base */
+    --space-xs: 8px;
+    --space-sm: 16px;
+    --space-md: 32px;
+    --space-lg: 56px;
+    --space-xl: 80px;
+    --space-2xl: 120px;
+
+    /* Radio de borde — sistema unificado */
+    --radius-sm: 6px;
+    --radius-md: 10px;
+    --radius-lg: 16px;
+
+    /* Sombras — profundidad editorial */
+    --shadow-card: 0 2px 24px rgba(0, 0, 0, 0.45), 0 1px 4px rgba(0, 0, 0, 0.3);
+    --shadow-btn: 0 4px 18px rgba(0, 0, 0, 0.5);
+
+    /* Animaciones de lujo */
+    --ease-luxury: cubic-bezier(0.25, 0.1, 0.1, 1.0);
+    --dur-fast: 800ms;
+    --dur-mid: 1100ms;
+    --dur-slow: 1400ms;
 }
 
+/* ==========================================================
+   II. RESET Y BASE
+   ========================================================== */
 *,
 *::before,
 *::after {
@@ -32,51 +72,9 @@
     padding: 0;
 }
 
-body {
-    display: flex;
-    justify-content: center;
-    align-items: flex-start;
-    min-height: 100svh;
-    padding-bottom: 20px;
-    font-family: var(--font-sans);
-    color: var(--ink);
-
-    /*--- PROPIEDADES DEL PATRO INFINITO APLICADAS AL BODY ---*/
-    background-image: url('fondo.png'), linear-gradient(to right, #1a0508 0%, var(--cream) 50%, #1a0508 100%);
-    background-repeat: repeat-y;
-    background-position: center top;
-    background-attachment: scroll;
-    background-color: var(--cream);
+html {
+    scroll-behavior: smooth;
 }
-
-/*body::before {
-    content: "";
-    position: fixed;
-    inset: 0;
-    background: radial-gradient(circle at top center, var(--panel) 0%, var(--icon-bg) 60%, #0a0203 100%);
-    z-index: -1;
-    pointer-events: none;
-}
-
-/*.background-image-page {
-    /* Establece la imagen de fondo con la ruta a tu archivo */
-/*background-image: url('fondo.png');
-
-    /* Activa la repetición para que el patrón cubra todo el espacio disponible */
-/*background-repeat: repeat;
-
-    /* Centra la imagen inicial, pero permite que el patrón se expanda */
-/*background-position: center top;
-
-    /* Asegura que el fondo cubra todo el viewport, permitiendo el scroll */
-/*background-attachment: scroll;
-    /* O 'fixed' si quieres un efecto de paralaje */
-
-/* Mantiene la textura de mármol como base */
-/*background-color: #f5f2e8;
-    /* Ajusta el color exacto si es necesario */
-
-
 
 img {
     display: block;
@@ -88,10 +86,10 @@ button {
     border: 0;
     cursor: pointer;
     background: transparent;
+    font: inherit;
 }
 
-input,
-button {
+input {
     font: inherit;
 }
 
@@ -100,393 +98,882 @@ a {
     width: 100%;
 }
 
-/* =========================================================
-   CONTENEDOR PRINCIPAL Y HEADER (ACTUALIZADO)
-   ========================================================= */
+/* ==========================================================
+   III. SISTEMA DE FONDOS — CAPAS INDEPENDIENTES
+   ========================================================== */
 
+/*
+  ARQUITECTURA:
+  Capa 1 — Color base borgoña sólido
+  Capa 2 — Gradiente lateral para dar volumen
+  Capa 3 — fondo.png a opacidad reducida (textura, no protagonista)
+*/
+body {
+    min-height: 100svh;
+    font-family: var(--font-body);
+    color: var(--text-primary);
+
+    background-color: var(--base);
+    background-image:
+        url('fondo.png'),
+        linear-gradient(to bottom, rgba(26, 5, 8, 0.6) 0%, transparent 15%, transparent 85%, rgba(26, 5, 8, 0.6) 100%),
+        linear-gradient(to right, rgba(26, 5, 8, 0.9) 0%, transparent 18%, transparent 82%, rgba(26, 5, 8, 0.9) 100%);
+    background-repeat: repeat-y, no-repeat, no-repeat;
+    background-position: center top, center, center;
+    background-size: auto, cover, cover;
+    background-attachment: scroll, fixed, fixed;
+
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding-bottom: var(--space-xl);
+}
+
+/* ==========================================================
+   IV. CONTENEDOR PRINCIPAL
+   ========================================================== */
 .container {
-    /* Centramos el contenedor sumando 'auto' a los lados */
     margin: 0 auto;
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: min(550px, 100%);
-    gap: 90px;
-    overflow: hidden;
-
-    /* --- BORDES VICTORIANOS LATERALES --- */
-    /* Crea un marco de línea doble dorada a los lados de la invitación */
-    border-left: 10px double var(--border);
-    border-right: 10px double var(--border);
-
-    /*forzamos a que el contenedor mida como minimo toda la pantalla el borde sea infinito*/
+    width: min(520px, 100%);
     min-height: 100svh;
 
-    /* Espaciado interno para que las letras no toquen los bordes de oro */
-    padding: 650px 20px 60px;
+    /* Espacio negativo generoso — ritmo editorial */
+    gap: var(--space-xl);
+    padding: 72px var(--space-md) var(--space-xl);
 
-    /* Sombra profunda para separar sutilmente el patrón del degradado de los lados */
-    box-shadow: 0 0 35px rgba(0, 0, 0, 0.7);
+    /* Bordes dobles dorados — identidad victoriana */
+    border-left: 8px double var(--border);
+    border-right: 8px double var(--border);
+    box-shadow: 0 0 60px rgba(0, 0, 0, 0.8);
+
+    /* Animación de entrada de toda la página */
+    animation: pageReveal var(--dur-slow) var(--ease-luxury) both;
 }
 
-.bloque-evento {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+/* ==========================================================
+   V. ANIMACIONES EDITORIALES
+   ========================================================== */
+
+@keyframes pageReveal {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes riseIn {
+    from {
+        opacity: 0;
+        transform: translateY(22px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+/* Clases de animación para aplicar a elementos */
+.anim-rise {
+    animation: riseIn var(--dur-mid) var(--ease-luxury) both;
+}
+
+.anim-rise-2 {
+    animation: riseIn var(--dur-mid) var(--ease-luxury) 200ms both;
+}
+
+.anim-rise-3 {
+    animation: riseIn var(--dur-mid) var(--ease-luxury) 400ms both;
+}
+
+.anim-fade {
+    animation: fadeIn var(--dur-slow) var(--ease-luxury) 300ms both;
+}
+
+/* ==========================================================
+   VI. SEPARADOR ORNAMENTAL
+   El único ornamento entre secciones — reemplaza los excesos
+   ========================================================== */
+.ornament-divider {
     width: 100%;
-    gap: 30px;
-    /* Controla la distancia exacta entre el título y el bloque de info */
-}
-
-
-
-/* =========================================================
-   BLOQUES DE INFORMACIÓN Y MAPAS
-   ========================================================= */
-
-.info,
-.maps {
-    width: 90%;
-    max-width: 500px;
-    background-color: var(--glass-panel);
-    border: 1px solid var(--glass-border);
-    -webkit-backdrop-filter: blur(12px);
-    backdrop-filter: blur(12px);
-}
-
-.info {
-    margin: 0 auto;
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
-    display: grid;
-    border-radius: 20px;
-    overflow: hidden;
-}
-
-.maps {
-    margin: -50px auto 0;
-    -webkit-backdrop-filter: blur(12px);
-    backdrop-filter: blur(12px);
-    border-radius: 12px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
     display: flex;
-    justify-content: center;
     align-items: center;
-    padding: 15px;
-    transition: transform 0.2s ease;
+    justify-content: center;
+    gap: var(--space-sm);
+    margin: calc(var(--space-lg) * -0.5) 0;
+    opacity: 0.6;
 }
 
-.maps:hover {
-    transform: translateY(-2px);
+.ornament-divider::before,
+.ornament-divider::after {
+    content: "";
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(to right, transparent, var(--border));
 }
 
-.maps a {
-    font-family: var(--font-sans);
-    color: var(--mint-ink);
+.ornament-divider::after {
+    background: linear-gradient(to left, transparent, var(--border));
+}
+
+.ornament-divider span {
     font-size: 14px;
-    font-weight: 600;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    text-align: center;
+    color: var(--border);
+    letter-spacing: 6px;
 }
 
-.info_item {
-    display: grid;
-    grid-template-columns: 55px 1fr;
-    gap: 18px;
-    align-items: center;
-    padding: 5px 5px;
-    border-bottom: 1px solid var(--border);
-    transition: background-color 0.3s ease;
-}
-
-.info_item:hover {
-    background-color: rgba(55, 3, 3, 0.3);
-}
-
-.info_item:last-child {
-    border-bottom: none;
-}
-
-.info_item>img {
-    width: 55px;
-    height: 55px;
-    border-radius: 20px;
-    object-fit: contain;
-    padding: 12px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-}
-
-.item h3 {
-    font-size: 15px;
-    font-weight: 600;
-    text-transform: uppercase;
-    color: var(--mint-ink);
-    margin-bottom: 4px;
-    letter-spacing: .1em;
-}
-
-.item p {
-    font-family: var(--font-serif);
-    letter-spacing: 0.5px;
-    font-weight: 500;
-    font-size: 18px;
-    color: var(--mint-ink);
-}
-
-/* =========================================================
-   FORMULARIOS, REGALOS Y COMPARTIR (CLASES COMPARTIDAS)
-   ========================================================= */
-
-form,
-.gift,
-.share {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    padding: 35px 20px 25px;
-
-    /* --- EFECTO VIDRIO (Glassmorphism) ---*/
-    /* FONDO OSCURO SEMITRANSPARENTE */
-    background-color: rgba(43, 10, 15, 0.2);
-    /* EL FILTRO QUE DESENFOCA EN PATRON DE FONDO*/
-    -webkit-backdrop-filter: blur(10px);
-    backdrop-filter: blur(10px);
-    /* Borde dorado sutil y bordes redondeados */
-    border: 1px solid var(--border);
-    border-radius: 18px;
-    /* Sombra para despegar la tarjeta del fondo y darle profundidad */
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
-}
-
-form {
-    gap: 30px;
-}
-
-.gift,
-.share {
-    width: 100%;
-    gap: 30px;
-}
-
-/* Párrafos compartidos */
-form p,
-.gift p,
-.share p {
-    font-family: var(--font-serif);
-    font-weight: 100;
-    letter-spacing: 1px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    width: 75%;
-}
-
-/* Campos de Formulario */
-form input {
-    font-family: var(--font-sans);
-    font-weight: 300;
-    width: 100%;
-    background: rgba(26, 5, 8, 0.5);
-    border: none;
-    border-bottom: .5px solid var(--border);
-    padding: 14px;
-    color: var(--mint-ink);
-    outline: none;
-}
-
-form input::placeholder {
-    color: var(--muted);
-    letter-spacing: .05em;
-    opacity: 0.7;
-}
-
-form input:focus {
-    background: var(--panel);
-    border-bottom: 1px solid var(--rose-strong);
-}
-
-/* Botones principales y compartidos */
-form button,
-.cv button,
-.share button {
-    font-family: var(--font-sans);
-    background-color: var(--mint);
-    color: var(--mint-ink);
-    width: 100%;
-}
-
-form button {
-    font-size: 18px;
-    margin-top: 6px;
-    padding: 16px;
-    border-radius: 12px;
-    font-weight: 300;
-    letter-spacing: 2px;
-}
-
-form button:hover {
-    filter: brightness(.98);
-}
-
-form button:active {
-    transform: translateY(1px) scale(.995);
-}
-
-/* Botones de Anclas */
-a button {
-    font-size: 16px;
-    width: 100%;
-    margin-top: 6px;
-    padding: 14px 16px;
-    border-radius: 8px;
-    background-color: var(--panel);
-    border: 1px solid var(--border);
-    color: var(--ink);
-    font-weight: 600;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
-}
-
-/* =========================================================
-   CV Y CONTACTO
-   ========================================================= */
-
-.cv {
-    font-family: var(--font-sans);
-    background-color: var(--panel);
-    border: 1px solid var(--border);
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 100%;
-    gap: 15px;
-    border-radius: 8px;
-    padding: 15px;
-    color: var(--rose-strong);
-}
-
-.cv button {
-    font-size: 15px;
-    font-weight: 500;
-    border: 1px solid var(--border);
-    letter-spacing: 1px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 15px;
-    border-radius: 8px;
-    padding: 15px;
-}
-
-.share button {
-    font-size: 15px;
-    font-weight: 600;
-    letter-spacing: 1px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 15px;
-    border-radius: 8px;
-    padding: 25px;
-}
-
-.share .contact {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-}
-
-.share .contact h2 {
-    font-size: 12px;
-    font-weight: 300;
-    color: var(--rose-strong);
-    margin-bottom: 4px;
-    letter-spacing: 1px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.share .contact p {
-    font-family: var(--font-serif);
-    font-size: 14px;
-    color: var(--mint-ink);
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-/* =========================================================
-   UTILIDADES DE TEXTO
-   ========================================================= */
-
-.texto-llamado {
-    color: var(--mint-ink);
-    font-style: italic;
-    font-family: var(--font-serif);
-    font-weight: 700;
-    font-size: 20px;
-}
-
+/* ==========================================================
+   VII. TÍTULOS DE SECCIÓN — Jerarquía tipográfica de lujo
+   ========================================================== */
 .titulo-bloque {
-    font-family: var(--font-serif);
+    font-family: var(--font-title);
     font-style: italic;
-    color: var(--cream);
-    letter-spacing: 5px;
-    font-weight: 600;
-    font-size: 32px;
-    padding: 10px 10px 0;
-    border-bottom: 1px solid var(--border);
+    font-weight: 700;
+    font-size: clamp(22px, 5vw, 30px);
+    line-height: 1.3;
+    letter-spacing: 4px;
     text-align: center;
+    /* Borgoña oscuro victoriano sobre fondo beige — máxima legibilidad */
+    color: #4A0D15;
+    text-shadow: 0 1px 0 rgba(255, 255, 255, 0.15), 1px 1px 2px rgba(74, 13, 21, 0.3);
+
+    /* Pausa antes del título */
+    padding: 0 var(--space-sm);
+    padding-bottom: var(--space-sm);
+    border-bottom: 1px solid rgba(138, 109, 59, 0.5);
+
+    /* Animación */
+    animation: riseIn var(--dur-mid) var(--ease-luxury) both;
 }
 
 .separar-letra {
     margin-left: 2px;
 }
 
-/* =========================================================
-   RESPONSIVE DESIGN (AGRUPADOS Y OPTIMIZADOS)
-   ========================================================= */
+/* ==========================================================
+   VIII. TARJETAS DE INFORMACIÓN — Papel fino, no glassmorphism
+   ========================================================== */
+.info {
+    width: 92%;
+    max-width: 460px;
+    margin: 0 auto;
+
+    /* Superficie de papel oscuro — blur mínimo */
+    background-color: var(--surface);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+
+    border: 1px solid var(--surface-border);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    box-shadow: var(--shadow-card);
+
+    animation: riseIn var(--dur-mid) var(--ease-luxury) 150ms both;
+}
+
+/* Cada fila dentro de la tarjeta */
+.info_item {
+    display: grid;
+    grid-template-columns: 52px 1fr;
+    gap: var(--space-sm);
+    align-items: center;
+    padding: 14px var(--space-sm);
+    border-bottom: 1px solid rgba(138, 109, 59, 0.2);
+    transition: background-color var(--dur-fast) var(--ease-luxury);
+}
+
+.info_item:last-child {
+    border-bottom: none;
+}
+
+.info_item:hover {
+    background-color: rgba(74, 13, 21, 0.35);
+}
+
+.info_item>img {
+    width: 44px;
+    height: 44px;
+    border-radius: var(--radius-md);
+    object-fit: contain;
+    padding: 10px;
+    opacity: 0.88;
+}
+
+/* Texto dentro de info_item */
+.item h3 {
+    font-family: var(--font-body);
+    font-size: 10px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    color: var(--muted);
+    margin-bottom: 4px;
+}
+
+.item p {
+    font-family: var(--font-title);
+    font-size: 16px;
+    font-weight: 400;
+    letter-spacing: 0.5px;
+    line-height: 1.3;
+    color: var(--text-primary);
+}
+
+/* ==========================================================
+   IX. BOTÓN GOOGLE MAPS
+   ========================================================== */
+.maps {
+    width: 92%;
+    max-width: 460px;
+    margin: calc(var(--space-md) * -0.6) auto 0;
+
+    background-color: var(--surface);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    border: 1px solid var(--surface-border);
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-card);
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: var(--space-sm);
+
+    transition: transform var(--dur-fast) var(--ease-luxury),
+        box-shadow var(--dur-fast) var(--ease-luxury);
+}
+
+.maps:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+}
+
+.maps a {
+    font-family: var(--font-body);
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--muted);
+    text-align: center;
+}
+
+/* ==========================================================
+   X. FORMULARIO RSVP — Carta antigua
+   ========================================================== */
+form {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0;
+
+    background-color: var(--surface);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    border: 1px solid var(--surface-border);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    box-shadow: var(--shadow-card);
+
+    /* Borde superior dorado como membrete */
+    border-top: 2px solid var(--border);
+
+    animation: riseIn var(--dur-mid) var(--ease-luxury) 300ms both;
+}
+
+/* Párrafo llamado — instrucción elegante */
+.texto-llamado {
+    font-family: var(--font-title);
+    font-size: 13px;
+    font-weight: 400;
+    font-style: italic;
+    letter-spacing: 1.5px;
+    line-height: 1.7;
+    color: var(--gold-light);
+    text-align: center;
+    padding: var(--space-md) var(--space-md) var(--space-sm);
+    width: 100%;
+}
+
+/* Campo de formulario — línea de carta */
+form .campo {
+    width: 100%;
+    position: relative;
+    border-bottom: 1px solid rgba(138, 109, 59, 0.25);
+}
+
+form .campo:last-of-type {
+    border-bottom: none;
+}
+
+form label {
+    display: block;
+    font-family: var(--font-body);
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--muted);
+    padding: var(--space-sm) var(--space-md) 4px;
+}
+
+form input {
+    display: block;
+    width: 100%;
+    background: transparent;
+    border: none;
+    padding: 4px var(--space-md) var(--space-sm);
+    color: var(--text-primary);
+    font-family: var(--font-body);
+    font-size: 18px;
+    font-weight: 300;
+    letter-spacing: 0.5px;
+    outline: none;
+    transition: background var(--dur-fast) var(--ease-luxury);
+}
+
+form input::placeholder {
+    color: rgba(203, 161, 83, 0.3);
+    font-style: italic;
+    font-size: 15px;
+}
+
+form input:focus {
+    background: rgba(74, 13, 21, 0.3);
+}
+
+form .campo:focus-within label {
+    color: var(--gold-light);
+    transition: color var(--dur-fast) var(--ease-luxury);
+}
+
+/* Botón confirmar */
+form .btn-confirmar {
+    width: 100%;
+    padding: var(--space-md) var(--space-md);
+    font-family: var(--font-body);
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--cream);
+    background: linear-gradient(135deg, var(--deep) 0%, rgba(74, 11, 17, 0.95) 100%);
+    border-top: 1px solid var(--surface-border);
+    cursor: pointer;
+    transition: background var(--dur-fast) var(--ease-luxury),
+        letter-spacing var(--dur-fast) var(--ease-luxury);
+}
+
+form .btn-confirmar:hover {
+    background: linear-gradient(135deg, rgba(90, 15, 22, 1) 0%, rgba(60, 8, 14, 1) 100%);
+    letter-spacing: 5px;
+}
+
+form .btn-confirmar:active {
+    transform: translateY(1px);
+}
+
+/* ==========================================================
+   XI. REGALO (CVU) — Tarjeta discreta
+   ========================================================== */
+.gift {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-md);
+    padding: var(--space-lg) var(--space-md);
+
+    background-color: var(--surface);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    border: 1px solid var(--surface-border);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-card);
+
+    animation: riseIn var(--dur-mid) var(--ease-luxury) 400ms both;
+}
+
+.gift p.texto-llamado {
+    padding: 0;
+    width: 85%;
+    font-size: 12px;
+    letter-spacing: 2px;
+    color: var(--gold-light);
+}
+
+.cv {
+    font-family: var(--font-body);
+    background-color: rgba(26, 5, 8, 0.6);
+    border: 1px solid rgba(138, 109, 59, 0.4);
+    border-radius: var(--radius-md);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    gap: var(--space-sm);
+    padding: var(--space-md);
+    color: var(--gold-light);
+}
+
+.cv p {
+    font-family: var(--font-title);
+    font-size: 18px;
+    letter-spacing: 2px;
+    color: var(--gold-light);
+}
+
+.cv button {
+    font-family: var(--font-body);
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--cream);
+    background-color: var(--deep);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    padding: 10px var(--space-md);
+    width: 100%;
+    transition: background var(--dur-fast) var(--ease-luxury),
+        transform var(--dur-fast) var(--ease-luxury);
+}
+
+.cv button:hover {
+    background-color: rgba(90, 15, 22, 0.95);
+    transform: translateY(-2px);
+}
+
+/* ==========================================================
+   XII. COMPARTIR FOTOS
+   ========================================================== */
+.share {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-md);
+    padding: var(--space-lg) var(--space-md);
+
+    background-color: var(--surface);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    border: 1px solid var(--surface-border);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-card);
+
+    animation: riseIn var(--dur-mid) var(--ease-luxury) 500ms both;
+}
+
+.share p.texto-llamado {
+    padding: 0;
+    width: 85%;
+    font-size: 12px;
+    letter-spacing: 2px;
+    color: var(--gold-light);
+}
+
+/* Botón WhatsApp */
+a button {
+    font-family: var(--font-body);
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    width: 100%;
+    padding: 14px var(--space-md);
+    border-radius: var(--radius-md);
+    background-color: var(--surface-raised);
+    border: 1px solid var(--surface-border);
+    color: var(--cream);
+    box-shadow: var(--shadow-btn);
+    transition: transform var(--dur-fast) var(--ease-luxury),
+        box-shadow var(--dur-fast) var(--ease-luxury);
+}
+
+a button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 28px rgba(0, 0, 0, 0.6);
+}
+
+.share .contact {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-xs);
+    text-align: center;
+}
+
+.share .contact h2 {
+    font-family: var(--font-body);
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--muted);
+}
+
+.share .contact p {
+    font-family: var(--font-body);
+    font-size: 15px;
+    font-weight: 300;
+    letter-spacing: 1px;
+    color: var(--text-primary);
+    width: auto;
+    padding: 0;
+    display: block;
+    text-align: center;
+}
+
+/* ==========================================================
+   XIII. HERO TITLE SECTION — Portada del libro
+   ========================================================== */
+
+.hero-title-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    width: 100%;
+    padding: var(--space-lg) 0 var(--space-md);
+    /* Sin gap global: cada elemento controla su propio espacio */
+}
+
+/* ── Corona ── */
+.crown-icon {
+    max-width: 260px;
+    width: 100%;
+    height: auto;
+    display: block;
+    /* Se asienta pegada al “MIS” de abajo */
+    margin-bottom: -10px;
+    /* Fusiona el fondo claro de la imagen con el fondo de la página
+       — elimina el recuadro gris de transparencia */
+    mix-blend-mode: multiply;
+    animation: riseIn var(--dur-slow) var(--ease-luxury) both;
+}
+
+/* ── "MIS" ── */
+.hero-mis {
+    font-family: var(--font-title);
+    font-size: clamp(14px, 4vw, 18px);
+    font-weight: 700;
+    letter-spacing: 14px;
+    text-transform: uppercase;
+    line-height: 1;
+    color: #4A0D15;
+    /* Espacio debajo de MIS para que XV quede bien separado */
+    margin-bottom: 8px;
+    animation: riseIn var(--dur-mid) var(--ease-luxury) 100ms both;
+}
+
+/* ── "XV" — protagonista tipográfico ── */
+.hero-xv {
+    font-family: var(--font-title);
+    /* 6–7 rem según pantalla — el elemento más grande */
+    font-size: clamp(86px, 22vw, 130px);
+    font-weight: 700;
+    letter-spacing: -2px;
+    line-height: 1;
+    margin: 0;
+    color: #4A0D15;
+    /* Sombra paralela precisa — tinta de alta calidad, cero glow */
+    text-shadow: 1px 1px 0 rgba(74, 13, 21, 0.25), 2px 2px 3px rgba(74, 13, 21, 0.12);
+    animation: riseIn var(--dur-mid) var(--ease-luxury) 200ms both;
+}
+
+/* ── Separador fino dorado ── */
+.hero-sep {
+    display: block;
+    width: 100px;
+    height: 1px;
+    margin: var(--space-md) auto var(--space-sm);
+    background: linear-gradient(to right, transparent, #8A6D3B 30%, #8A6D3B 70%, transparent);
+    border: none;
+    animation: fadeIn var(--dur-slow) var(--ease-luxury) 300ms both;
+}
+
+/* ── Texto descriptivo ── */
+.hero-descripcion {
+    font-family: var(--font-body);
+    font-size: clamp(11px, 2.8vw, 13px);
+    font-weight: 500;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: #5C2E0A;
+    line-height: 1.7;
+    margin-bottom: var(--space-sm);
+    animation: fadeIn var(--dur-slow) var(--ease-luxury) 350ms both;
+}
+
+/* ── Nombre "Ada" — firma principal, segundo más grande ── */
+.hero-nombre {
+    font-family: "Great Vibes", cursive;
+    font-size: clamp(74px, 20vw, 108px);
+    font-weight: 400;
+    line-height: 1.05;
+    letter-spacing: 2px;
+    color: #4A0D15;
+    /* Sombra paralela discreta — efecto tinta impresa */
+    text-shadow: 1px 1px 1px rgba(74, 13, 21, 0.3);
+    display: block;
+    animation: riseIn var(--dur-slow) var(--ease-luxury) 400ms both;
+}
+
+/* ==========================================================
+   XIV. ENTRADA CARD — Valor de la tarjeta
+   ========================================================== */
+
+.entrada {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-md);
+    padding: var(--space-lg) var(--space-md);
+
+    background-color: var(--surface);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    border: 1px solid var(--surface-border);
+    border-top: 2px solid var(--border);
+    /* membrete dorado */
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-card);
+
+    animation: riseIn var(--dur-mid) var(--ease-luxury) 200ms both;
+}
+
+/* Título de sección dentro de la card */
+.entrada>.texto-llamado {
+    padding: 0;
+    width: 85%;
+}
+
+/* Bloque precio */
+.entrada-precio {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    background-color: rgba(18, 3, 5, 0.65);
+    border: 1px solid rgba(138, 109, 59, 0.3);
+    border-radius: var(--radius-md);
+    padding: var(--space-md) var(--space-sm);
+}
+
+.entrada-precio .precio-label {
+    font-family: var(--font-body);
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--muted);
+}
+
+.entrada-precio .precio-monto {
+    font-family: var(--font-title);
+    font-size: clamp(34px, 9vw, 46px);
+    font-weight: 700;
+    letter-spacing: 2px;
+    line-height: 1;
+    background: linear-gradient(135deg, #E5C378 0%, #fff8e7 50%, #A68141 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    filter: drop-shadow(0 0 12px rgba(229, 195, 120, 0.25));
+}
+
+.entrada-precio .precio-nota {
+    font-family: var(--font-body);
+    font-size: 11px;
+    font-weight: 300;
+    letter-spacing: 1.5px;
+    color: rgba(240, 230, 210, 0.35);
+    font-style: italic;
+    margin-top: 4px;
+}
+
+/* CVU/Alias de entrada — reutiliza estilos de .cv */
+.entrada .cv-entrada {
+    font-family: var(--font-body);
+    background-color: rgba(26, 5, 8, 0.6);
+    border: 1px solid rgba(138, 109, 59, 0.4);
+    border-radius: var(--radius-md);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    gap: var(--space-sm);
+    padding: var(--space-md);
+    color: var(--gold-light);
+}
+
+.entrada .cv-entrada p {
+    font-family: var(--font-title);
+    font-size: 16px;
+    letter-spacing: 2px;
+    color: var(--gold-light);
+    word-break: break-all;
+    text-align: center;
+}
+
+.entrada .cv-entrada button {
+    font-family: var(--font-body);
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--cream);
+    background-color: var(--deep);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    padding: 10px var(--space-md);
+    width: 100%;
+    transition: background var(--dur-fast) var(--ease-luxury),
+        transform var(--dur-fast) var(--ease-luxury);
+}
+
+.entrada .cv-entrada button:hover {
+    background-color: rgba(90, 15, 22, 0.95);
+    transform: translateY(-2px);
+}
+
+.entrada .cv-entrada button:active {
+    transform: translateY(0);
+}
+
+/* ==========================================================
+   XV. AVISO EDITORIAL — Información sobre bebidas
+   ========================================================== */
+
+.aviso-editorial {
+    width: 92%;
+    max-width: 420px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-sm);
+    text-align: center;
+    padding: var(--space-lg) var(--space-md);
+
+    /* Líneas finas victorianas — sin card pesada */
+    border-top: 1px solid rgba(138, 109, 59, 0.28);
+    border-bottom: 1px solid rgba(138, 109, 59, 0.28);
+
+    animation: fadeIn var(--dur-slow) var(--ease-luxury) 400ms both;
+}
+
+/* Ornamento central superior */
+.aviso-editorial .aviso-ornamento {
+    font-size: 12px;
+    /* Sepia dorado oscuro — visible sobre beige */
+    color: rgba(94, 46, 10, 0.55);
+    letter-spacing: 8px;
+    line-height: 1;
+    margin-bottom: var(--space-xs);
+}
+
+/* Ícono copa — SVG inline, trazo fino */
+.aviso-editorial .aviso-icono {
+    width: 28px;
+    height: 28px;
+    /* Color sepia oscuro para que sea visible */
+    color: #5C2E0A;
+    opacity: 0.55;
+    flex-shrink: 0;
+}
+
+/* Título del aviso */
+.aviso-editorial .aviso-titulo {
+    font-family: var(--font-title);
+    font-size: clamp(11px, 3vw, 13px);
+    font-weight: 500;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    /* Borgoña oscuro — máximo contraste sobre beige */
+    color: #4A0D15;
+    line-height: 1.4;
+}
+
+/* Texto del aviso */
+.aviso-editorial .aviso-texto {
+    font-family: var(--font-body);
+    font-style: italic;
+    font-weight: 400;
+    font-size: clamp(16px, 4vw, 18px);
+    line-height: 1.85;
+    letter-spacing: 0.2px;
+    /* Sepia profundo victoriano — 100% legible sobre papel antiguo */
+    color: #3E2723;
+    width: 100%;
+    display: block;
+    text-align: center;
+}
+
+/* ==========================================================
+   XVI. RESPONSIVE — Todos los dispositivos
+   ========================================================== */
 
 @media (max-width: 550px) {
-
-    .info,
-    .maps,
-    .gift,
-    .share {
-        width: 100%;
+    .container {
+        gap: var(--space-lg);
+        padding-left: var(--space-sm);
+        padding-right: var(--space-sm);
     }
 
-    .gift p,
-    .share p {
+    .info,
+    .maps {
         width: 100%;
     }
 
     .titulo-bloque {
-        font-size: 26px;
-        margin-bottom: -45px;
+        font-size: clamp(19px, 5.5vw, 24px);
+        letter-spacing: 2px;
+    }
+
+    .gift p.texto-llamado,
+    .share p.texto-llamado {
+        width: 100%;
+    }
+
+    .texto-llamado {
+        font-size: 12px;
+        letter-spacing: 1px;
     }
 }
 
-@media (max-width: 360px) {
+@media (max-width: 380px) {
     .container {
-        border-radius: 12px;
+        border-left: 5px double var(--border);
+        border-right: 5px double var(--border);
+        gap: var(--space-md);
     }
 
-    .top {
-        padding: 28px 16px 30px;
+    .titulo-bloque {
+        font-size: 18px;
     }
 
-    .description h2 {
-        font-size: 48px;
+    .item p {
+        font-size: 14px;
     }
 }
 

@@ -11,23 +11,31 @@
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,400&family=Cinzel+Decorative:wght@400;700&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,400&family=Cinzel+Decorative:wght@400;700&display=swap"
+        rel="stylesheet">
 
     <style>
         :root {
-            --gold:        #E5C378;
-            --gold-dim:    #A68141;
+            --gold: #E5C378;
+            --gold-dim: #A68141;
             --gold-border: #8A6D3B;
-            --dark:        #1A0508;
-            --panel:       #2B0A0F;
-            --cream:       #F0E6D2;
-            --glass:       rgba(20, 4, 7, 0.88);
+            --dark: #1A0508;
+            --panel: #2B0A0F;
+            --cream: #F0E6D2;
+            --glass: rgba(20, 4, 7, 0.88);
             --glass-light: rgba(229, 195, 120, 0.05);
-            --font-title:  "Cinzel Decorative", serif;
-            --font-body:   "Cormorant Garamond", serif;
+            --font-title: "Cinzel Decorative", serif;
+            --font-body: "Cormorant Garamond", serif;
         }
 
-        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
 
         body {
             min-height: 100svh;
@@ -58,7 +66,7 @@
         .header {
             text-align: center;
             padding: 28px 0 32px;
-            border-bottom: 1px solid rgba(138,109,59,0.4);
+            border-bottom: 1px solid rgba(138, 109, 59, 0.4);
             position: relative;
         }
 
@@ -86,7 +94,7 @@
             padding: 6px 20px;
             border-radius: 30px;
             margin-bottom: 20px;
-            box-shadow: 0 0 14px rgba(229,195,120,0.15);
+            box-shadow: 0 0 14px rgba(229, 195, 120, 0.15);
         }
 
         /* Título principal «Mis XV · Ada» */
@@ -97,12 +105,12 @@
             line-height: 1.35;
             letter-spacing: 3px;
             /* Degradado dorado en el texto */
-            background: linear-gradient(135deg, #E5C378 0%, #fff8e7 45%, #A68141 100%);
+            background: linear-gradient(135deg, #73292944 0%, #aa7d3060 45%, #c5770673 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
             /* Halo dorado sutil */
-            filter: drop-shadow(0 0 12px rgba(229,195,120,0.35));
+            filter: drop-shadow(0 0 12px rgba(229, 195, 120, 0.35));
         }
 
         /* Subtítulo «Lista de Invitados» */
@@ -114,7 +122,7 @@
             letter-spacing: 6px;
             text-transform: uppercase;
             /* resetear el clip heredado */
-            background: linear-gradient(135deg, #cba153 0%, #E5C378 100%);
+            background: linear-gradient(135deg, #73292944 0%, #aa7d3060 45%, #c5770673 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
@@ -140,16 +148,25 @@
             border-radius: 10px;
             padding: 10px 18px;
             cursor: pointer;
-            box-shadow: 0 4px 16px rgba(0,0,0,0.5), inset 0 1px 0 rgba(229,195,120,0.1);
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(229, 195, 120, 0.1);
             transition: background 0.2s ease, box-shadow 0.2s ease, transform 0.15s ease;
         }
+
         #btn-refresh:hover {
             background: rgba(74, 11, 17, 0.98);
-            box-shadow: 0 6px 22px rgba(0,0,0,0.6), 0 0 12px rgba(229,195,120,0.2);
+            box-shadow: 0 6px 22px rgba(0, 0, 0, 0.6), 0 0 12px rgba(229, 195, 120, 0.2);
             transform: translateY(-1px);
         }
-        #btn-refresh:active  { transform: translateY(0); }
-        #btn-refresh:disabled { opacity: 0.35; cursor: default; transform: none; }
+
+        #btn-refresh:active {
+            transform: translateY(0);
+        }
+
+        #btn-refresh:disabled {
+            opacity: 0.35;
+            cursor: default;
+            transform: none;
+        }
 
         /* ══════════════════════════════
            TARJETAS DE TOTALES
@@ -162,7 +179,7 @@
 
         .tarjeta {
             background: rgba(14, 3, 5, 0.92);
-            border: 1px solid rgba(138,109,59,0.45);
+            border: 1px solid rgba(138, 109, 59, 0.45);
             border-radius: 18px;
             padding: 28px 16px 22px;
             text-align: center;
@@ -175,7 +192,7 @@
 
         .tarjeta:hover {
             transform: translateY(-5px);
-            box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
         }
 
         /* Línea dorada decorativa superior */
@@ -221,14 +238,14 @@
         .tarjeta .sublabel {
             font-size: 11px;
             letter-spacing: 1.5px;
-            color: rgba(240,230,210,0.4);
+            color: rgba(240, 230, 210, 0.4);
             margin-top: 8px;
             display: block;
         }
 
         /* Tarjeta general — un poco más destacada */
         .tarjeta.total-general {
-            border-color: rgba(229,195,120,0.55);
+            border-color: rgba(229, 195, 120, 0.55);
             background: rgba(30, 10, 5, 0.95);
         }
 
@@ -241,12 +258,12 @@
         ══════════════════════════════ */
         .tabla-card {
             background: rgba(14, 3, 5, 0.92);
-            border: 1px solid rgba(138,109,59,0.45);
+            border: 1px solid rgba(138, 109, 59, 0.45);
             border-radius: 18px;
             overflow: hidden;
             backdrop-filter: blur(16px);
             -webkit-backdrop-filter: blur(16px);
-            box-shadow: 0 12px 40px rgba(0,0,0,0.6);
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.6);
         }
 
         .tabla-top {
@@ -254,7 +271,7 @@
             align-items: center;
             justify-content: space-between;
             padding: 18px 24px;
-            border-bottom: 1px solid rgba(138,109,59,0.3);
+            border-bottom: 1px solid rgba(138, 109, 59, 0.3);
         }
 
         .tabla-top h2 {
@@ -270,17 +287,22 @@
             font-family: var(--font-body);
             font-size: 12px;
             letter-spacing: 1px;
-            background: rgba(229,195,120,0.1);
-            border: 1px solid rgba(229,195,120,0.3);
+            background: rgba(229, 195, 120, 0.1);
+            border: 1px solid rgba(229, 195, 120, 0.3);
             color: var(--gold);
             padding: 4px 14px;
             border-radius: 20px;
         }
 
         /* Tabla */
-        table { width: 100%; border-collapse: collapse; }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
 
-        thead tr { background: rgba(26, 5, 8, 0.6); }
+        thead tr {
+            background: rgba(26, 5, 8, 0.6);
+        }
 
         th {
             padding: 12px 20px;
@@ -290,7 +312,7 @@
             font-weight: 600;
             letter-spacing: 3px;
             text-transform: uppercase;
-            color: rgba(229,195,120,0.5);
+            color: rgba(229, 195, 120, 0.5);
         }
 
         td {
@@ -298,12 +320,12 @@
             font-family: var(--font-body);
             font-size: 17px;
             color: var(--cream);
-            border-bottom: 1px solid rgba(138,109,59,0.15);
+            border-bottom: 1px solid rgba(138, 109, 59, 0.15);
         }
 
         td.n-col {
             font-size: 13px;
-            color: rgba(240,230,210,0.35);
+            color: rgba(240, 230, 210, 0.35);
             font-weight: 300;
             width: 42px;
         }
@@ -317,12 +339,17 @@
             text-align: center;
         }
 
-        tbody tr:last-child td { border-bottom: none; }
+        tbody tr:last-child td {
+            border-bottom: none;
+        }
 
         tbody tr {
             transition: background 0.2s ease;
         }
-        tbody tr:hover { background: rgba(229,195,120,0.05); }
+
+        tbody tr:hover {
+            background: rgba(229, 195, 120, 0.05);
+        }
 
         /* Etiquetas */
         .etiqueta {
@@ -347,7 +374,7 @@
 
         .etiqueta.secundaria {
             background: rgba(43, 10, 15, 0.9);
-            border: 1px solid rgba(138,109,59,0.4);
+            border: 1px solid rgba(138, 109, 59, 0.4);
             color: var(--gold-dim);
         }
 
@@ -357,10 +384,13 @@
             font-family: var(--font-body);
             font-style: italic;
             font-size: 16px;
-            color: rgba(240,230,210,0.4);
+            color: rgba(240, 230, 210, 0.4);
             padding: 48px 0;
         }
-        .msg-estado.error { color: #e57373; }
+
+        .msg-estado.error {
+            color: #e57373;
+        }
 
         /* ══════════════════════════════
            PIE
@@ -371,7 +401,7 @@
             font-size: 11px;
             letter-spacing: 3px;
             text-transform: uppercase;
-            color: rgba(138,109,59,0.5);
+            color: rgba(138, 109, 59, 0.5);
         }
 
         /* ══════════════════════════════════════════════
@@ -380,20 +410,37 @@
 
         /* ── Tablet horizontal / laptop pequeño (≤1024px) ── */
         @media (max-width: 1024px) {
-            .wrapper { max-width: 100%; padding: 0 8px; }
+            .wrapper {
+                max-width: 100%;
+                padding: 0 8px;
+            }
         }
 
         /* ── Tablet vertical (≤768px) ── */
         @media (max-width: 768px) {
-            body { padding: 28px 12px 56px; }
-            .header h1 { font-size: clamp(20px, 4vw, 26px); }
-            .tarjeta .numero { font-size: clamp(36px, 7vw, 52px); }
-            th, td { padding: 11px 16px; }
+            body {
+                padding: 28px 12px 56px;
+            }
+
+            .header h1 {
+                font-size: clamp(20px, 4vw, 26px);
+            }
+
+            .tarjeta .numero {
+                font-size: clamp(36px, 7vw, 52px);
+            }
+
+            th,
+            td {
+                padding: 11px 16px;
+            }
         }
 
         /* ── Móvil grande / Android estándar (≤600px) ── */
         @media (max-width: 600px) {
-            body { padding: 20px 10px 48px; }
+            body {
+                padding: 20px 10px 48px;
+            }
 
             /* Header: botón debajo del título */
             .header {
@@ -403,6 +450,7 @@
                 align-items: center;
                 gap: 16px;
             }
+
             #btn-refresh {
                 position: static;
                 width: 100%;
@@ -411,204 +459,306 @@
             }
 
             /* Totales: 2 columnas, el general ocupa todo el ancho */
-            .totales { grid-template-columns: 1fr 1fr; gap: 12px; }
-            .tarjeta.total-general { grid-column: span 2; }
-            .tarjeta { padding: 22px 12px 18px; border-radius: 14px; }
-            .tarjeta .numero { font-size: clamp(34px, 9vw, 48px); }
+            .totales {
+                grid-template-columns: 1fr 1fr;
+                gap: 12px;
+            }
+
+            .tarjeta.total-general {
+                grid-column: span 2;
+            }
+
+            .tarjeta {
+                padding: 22px 12px 18px;
+                border-radius: 14px;
+            }
+
+            .tarjeta .numero {
+                font-size: clamp(34px, 9vw, 48px);
+            }
 
             /* Tabla: sin columna # ni Tipo en pantallas chicas */
-            th, td { padding: 10px 12px; }
-            th { font-size: 9px; letter-spacing: 2px; }
-            td { font-size: 15px; }
+            th,
+            td {
+                padding: 10px 12px;
+            }
 
-            .etiqueta { font-size: 10px; padding: 3px 9px; }
-            .tabla-card { border-radius: 14px; }
-            .tabla-top { padding: 14px 16px; }
+            th {
+                font-size: 9px;
+                letter-spacing: 2px;
+            }
+
+            td {
+                font-size: 15px;
+            }
+
+            .etiqueta {
+                font-size: 10px;
+                padding: 3px 9px;
+            }
+
+            .tabla-card {
+                border-radius: 14px;
+            }
+
+            .tabla-top {
+                padding: 14px 16px;
+            }
         }
 
         /* ── Móvil pequeño / iPhone SE / Android 360px (≤420px) ── */
         @media (max-width: 420px) {
-            body { padding: 16px 8px 40px; }
-            .wrapper { gap: 20px; }
+            body {
+                padding: 16px 8px 40px;
+            }
 
-            .header::before { font-size: 11px; letter-spacing: 5px; }
-            .header .eyebrow { font-size: 10px; padding: 5px 14px; }
-            .header h1 { font-size: clamp(17px, 5.5vw, 22px); letter-spacing: 1.5px; }
-            .header h1 .sub { font-size: 10px; letter-spacing: 4px; }
+            .wrapper {
+                gap: 20px;
+            }
 
-            .totales { gap: 10px; }
-            .tarjeta { padding: 18px 10px 14px; border-radius: 12px; }
-            .tarjeta .numero { font-size: clamp(30px, 10vw, 42px); }
-            .tarjeta .label  { font-size: 9px; letter-spacing: 2px; }
+            .header::before {
+                font-size: 11px;
+                letter-spacing: 5px;
+            }
+
+            .header .eyebrow {
+                font-size: 10px;
+                padding: 5px 14px;
+            }
+
+            .header h1 {
+                font-size: clamp(17px, 5.5vw, 22px);
+                letter-spacing: 1.5px;
+            }
+
+            .header h1 .sub {
+                font-size: 10px;
+                letter-spacing: 4px;
+            }
+
+            .totales {
+                gap: 10px;
+            }
+
+            .tarjeta {
+                padding: 18px 10px 14px;
+                border-radius: 12px;
+            }
+
+            .tarjeta .numero {
+                font-size: clamp(30px, 10vw, 42px);
+            }
+
+            .tarjeta .label {
+                font-size: 9px;
+                letter-spacing: 2px;
+            }
 
             /* Ocultar columna # en pantallas muy pequeñas */
-            th:first-child, td.n-col { display: none; }
-            th, td { padding: 9px 10px; font-size: 14px; }
-            .etiqueta { font-size: 9px; padding: 3px 8px; letter-spacing: 1px; }
+            th:first-child,
+            td.n-col {
+                display: none;
+            }
+
+            th,
+            td {
+                padding: 9px 10px;
+                font-size: 14px;
+            }
+
+            .etiqueta {
+                font-size: 9px;
+                padding: 3px 8px;
+                letter-spacing: 1px;
+            }
         }
 
         /* ── Pantallas muy pequeñas (≤320px) ── */
         @media (max-width: 320px) {
-            body { padding: 12px 6px 32px; }
-            .header h1 { font-size: 16px; }
-            .tarjeta .numero { font-size: 28px; }
-            th, td { padding: 8px; font-size: 13px; }
+            body {
+                padding: 12px 6px 32px;
+            }
+
+            .header h1 {
+                font-size: 16px;
+            }
+
+            .tarjeta .numero {
+                font-size: 28px;
+            }
+
+            th,
+            td {
+                padding: 8px;
+                font-size: 13px;
+            }
         }
 
         /* ── Desktop grande (≥1280px) ── */
         @media (min-width: 1280px) {
-            .wrapper { max-width: 900px; }
-            .tarjeta { padding: 32px 20px 26px; }
-            td { font-size: 18px; }
+            .wrapper {
+                max-width: 900px;
+            }
+
+            .tarjeta {
+                padding: 32px 20px 26px;
+            }
+
+            td {
+                font-size: 18px;
+            }
         }
     </style>
 </head>
 
 <body>
 
-<div class="wrapper">
+    <div class="wrapper">
 
-    <!-- HEADER -->
-    <header class="header">
-        <p class="eyebrow">Panel de gestión</p>
-        <h1>Mis XV · Ada<span class="sub">Lista de Invitados</span></h1>
-        <button id="btn-refresh">↻ Actualizar</button>
-    </header>
+        <!-- HEADER -->
+        <header class="header">
+            <p class="eyebrow">Panel de gestión</p>
+            <h1>Mis XV · Ada<span class="sub">Lista de Invitados</span></h1>
+            <button id="btn-refresh">↻ Actualizar</button>
+        </header>
 
-    <!-- TOTALES -->
-    <section class="totales">
-        <div class="tarjeta">
-            <span class="icon-bg">🕯</span>
-            <span class="label">Misa Blanca</span>
-            <span class="numero" id="total-primaria">–</span>
-            <span class="sublabel">personas</span>
-        </div>
-        <div class="tarjeta">
-            <span class="icon-bg">🎉</span>
-            <span class="label">Solo Fiesta</span>
-            <span class="numero" id="total-secundaria">–</span>
-            <span class="sublabel">personas</span>
-        </div>
-        <div class="tarjeta total-general">
-            <span class="icon-bg">👑</span>
-            <span class="label">Total General</span>
-            <span class="numero" id="total-general">–</span>
-            <span class="sublabel">confirmados</span>
-        </div>
-    </section>
+        <!-- TOTALES -->
+        <section class="totales">
+            <div class="tarjeta">
+                <span class="icon-bg">🕯</span>
+                <span class="label">Misa Blanca</span>
+                <span class="numero" id="total-primaria">–</span>
+                <span class="sublabel">personas</span>
+            </div>
+            <div class="tarjeta">
+                <span class="icon-bg">🎉</span>
+                <span class="label">Solo Fiesta</span>
+                <span class="numero" id="total-secundaria">–</span>
+                <span class="sublabel">personas</span>
+            </div>
+            <div class="tarjeta total-general">
+                <span class="icon-bg">👑</span>
+                <span class="label">Total General</span>
+                <span class="numero" id="total-general">–</span>
+                <span class="sublabel">confirmados</span>
+            </div>
+        </section>
 
-    <!-- TABLA -->
-    <section class="tabla-card">
-        <div class="tabla-top">
-            <h2>✦ &nbsp;Confirmaciones</h2>
-            <span class="badge-total" id="badge-count">0 invitados</span>
-        </div>
-        <table>
-            <thead>
-                <tr>
-                    <th>#</th>
-                    <th>Nombre y Apellido</th>
-                    <th style="text-align:center;">Personas</th>
-                    <th>Tipo</th>
-                </tr>
-            </thead>
-            <tbody id="cuerpo-tabla">
-                <tr><td colspan="4" class="msg-estado">Cargando invitados…</td></tr>
-            </tbody>
-        </table>
-    </section>
+        <!-- TABLA -->
+        <section class="tabla-card">
+            <div class="tabla-top">
+                <h2>✦ &nbsp;Confirmaciones</h2>
+                <span class="badge-total" id="badge-count">0 invitados</span>
+            </div>
+            <table>
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Nombre y Apellido</th>
+                        <th style="text-align:center;">Personas</th>
+                        <th>Tipo</th>
+                    </tr>
+                </thead>
+                <tbody id="cuerpo-tabla">
+                    <tr>
+                        <td colspan="4" class="msg-estado">Cargando invitados…</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
 
-    <!-- PIE -->
-    <footer class="footer">✦ &nbsp; Mis XV Ada &nbsp; · &nbsp; Panel Privado &nbsp; · &nbsp; 2026 &nbsp; ✦</footer>
+        <!-- PIE -->
+        <footer class="footer">✦ &nbsp; Mis XV Ada &nbsp; · &nbsp; Panel Privado &nbsp; · &nbsp; 2026 &nbsp; ✦</footer>
 
-</div>
+    </div>
 
-<script type="module">
-    import { initializeApp } from "https://www.gstatic.com/firebasejs/12.3.0/firebase-app.js";
-    import { getFirestore, collection, getDocs, query, orderBy } from "https://www.gstatic.com/firebasejs/12.3.0/firebase-firestore.js";
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/12.3.0/firebase-app.js";
+        import { getFirestore, collection, getDocs, query, orderBy } from "https://www.gstatic.com/firebasejs/12.3.0/firebase-firestore.js";
 
-    const firebaseConfig = {
-        apiKey: "AIzaSyCWqKvjl-rXwxqg5GptYPQioZSdOYto5lk",
-        authDomain: "mis15ada.firebaseapp.com",
-        projectId: "mis15ada",
-        storageBucket: "mis15ada.firebasestorage.app",
-        messagingSenderId: "624723026140",
-        appId: "1:624723026140:web:214aabf050c2ccd3069419"
-    };
+        const firebaseConfig = {
+            apiKey: "AIzaSyCWqKvjl-rXwxqg5GptYPQioZSdOYto5lk",
+            authDomain: "mis15ada.firebaseapp.com",
+            projectId: "mis15ada",
+            storageBucket: "mis15ada.firebasestorage.app",
+            messagingSenderId: "624723026140",
+            appId: "1:624723026140:web:214aabf050c2ccd3069419"
+        };
 
-    const app = initializeApp(firebaseConfig);
-    const db  = getFirestore(app);
-    const EVENTO = "15-Ada";
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+        const EVENTO = "15-Ada";
 
-    const cuerpoTabla        = document.getElementById('cuerpo-tabla');
-    const elPrimaria         = document.getElementById('total-primaria');
-    const elSecundaria       = document.getElementById('total-secundaria');
-    const elGeneral          = document.getElementById('total-general');
-    const badgeCount         = document.getElementById('badge-count');
-    const btnRefresh         = document.getElementById('btn-refresh');
+        const cuerpoTabla = document.getElementById('cuerpo-tabla');
+        const elPrimaria = document.getElementById('total-primaria');
+        const elSecundaria = document.getElementById('total-secundaria');
+        const elGeneral = document.getElementById('total-general');
+        const badgeCount = document.getElementById('badge-count');
+        const btnRefresh = document.getElementById('btn-refresh');
 
-    async function cargarInvitados() {
-        cuerpoTabla.innerHTML = '<tr><td colspan="4" class="msg-estado">Cargando invitados…</td></tr>';
-        elPrimaria.innerText = elSecundaria.innerText = elGeneral.innerText = '–';
-        badgeCount.innerText = '…';
-        btnRefresh.disabled = true;
-        btnRefresh.textContent = 'Cargando…';
+        async function cargarInvitados() {
+            cuerpoTabla.innerHTML = '<tr><td colspan="4" class="msg-estado">Cargando invitados…</td></tr>';
+            elPrimaria.innerText = elSecundaria.innerText = elGeneral.innerText = '–';
+            badgeCount.innerText = '…';
+            btnRefresh.disabled = true;
+            btnRefresh.textContent = 'Cargando…';
 
-        try {
-            const q = query(
-                collection(db, "eventos", EVENTO, "confirmaciones"),
-                orderBy("createdAt", "asc")
-            );
-            const snap = await getDocs(q);
+            try {
+                const q = query(
+                    collection(db, "eventos", EVENTO, "confirmaciones"),
+                    orderBy("createdAt", "asc")
+                );
+                const snap = await getDocs(q);
 
-            cuerpoTabla.innerHTML = '';
+                cuerpoTabla.innerHTML = '';
 
-            if (snap.empty) {
-                cuerpoTabla.innerHTML = '<tr><td colspan="4" class="msg-estado">Aún no hay confirmaciones.</td></tr>';
-                elPrimaria.innerText = elSecundaria.innerText = elGeneral.innerText = '0';
-                badgeCount.innerText = '0 invitados';
-                return;
-            }
+                if (snap.empty) {
+                    cuerpoTabla.innerHTML = '<tr><td colspan="4" class="msg-estado">Aún no hay confirmaciones.</td></tr>';
+                    elPrimaria.innerText = elSecundaria.innerText = elGeneral.innerText = '0';
+                    badgeCount.innerText = '0 invitados';
+                    return;
+                }
 
-            let sumP = 0, sumS = 0, fila = 1;
+                let sumP = 0, sumS = 0, fila = 1;
 
-            snap.forEach(doc => {
-                const d        = doc.data();
-                const nombre   = d.nombre         || "Sin nombre";
-                const cantidad = d.invitados       || 1;
-                const tipo     = d.tipoInvitacion  || "primaria";
+                snap.forEach(doc => {
+                    const d = doc.data();
+                    const nombre = d.nombre || "Sin nombre";
+                    const cantidad = d.invitados || 1;
+                    const tipo = d.tipoInvitacion || "primaria";
 
-                tipo === 'primaria' ? sumP += cantidad : sumS += cantidad;
+                    tipo === 'primaria' ? sumP += cantidad : sumS += cantidad;
 
-                const texto = tipo === 'primaria' ? '🕯 Cena (20:30)' : '🎉 Solo Fiesta';
+                    const texto = tipo === 'primaria' ? '🕯 Cena' : '🎉 Fiesta';
 
-                const tr = document.createElement('tr');
-                tr.innerHTML = `
+                    const tr = document.createElement('tr');
+                    tr.innerHTML = `
                     <td class="n-col">${fila++}</td>
                     <td>${nombre}</td>
                     <td class="personas-col">${cantidad}</td>
                     <td><span class="etiqueta ${tipo}">${texto}</span></td>
                 `;
-                cuerpoTabla.appendChild(tr);
-            });
+                    cuerpoTabla.appendChild(tr);
+                });
 
-            elPrimaria.innerText   = sumP;
-            elSecundaria.innerText = sumS;
-            elGeneral.innerText    = sumP + sumS;
-            badgeCount.innerText   = `${snap.size} confirmación${snap.size !== 1 ? 'es' : ''}`;
+                elPrimaria.innerText = sumP;
+                elSecundaria.innerText = sumS;
+                elGeneral.innerText = sumP + sumS;
+                badgeCount.innerText = `${snap.size} confirmación${snap.size !== 1 ? 'es' : ''}`;
 
-        } catch (err) {
-            console.error(err);
-            cuerpoTabla.innerHTML = '<tr><td colspan="4" class="msg-estado error">Error al conectar. Intentá de nuevo.</td></tr>';
-        } finally {
-            btnRefresh.disabled    = false;
-            btnRefresh.textContent = '↻ Actualizar';
+            } catch (err) {
+                console.error(err);
+                cuerpoTabla.innerHTML = '<tr><td colspan="4" class="msg-estado error">Error al conectar. Intentá de nuevo.</td></tr>';
+            } finally {
+                btnRefresh.disabled = false;
+                btnRefresh.textContent = '↻ Actualizar';
+            }
         }
-    }
 
-    cargarInvitados();
-    btnRefresh.addEventListener('click', cargarInvitados);
-</script>
+        cargarInvitados();
+        btnRefresh.addEventListener('click', cargarInvitados);
+    </script>
 
 </body>
+
 </html>

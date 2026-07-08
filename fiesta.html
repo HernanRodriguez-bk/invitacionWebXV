@@ -7,34 +7,37 @@
     <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
     <meta http-equiv="Pragma" content="no-cache" />
     <meta http-equiv="Expires" content="0" />
-    <title>MisXVAda</title>
+    <meta name="description" content="Invitación a la Noche Soñada — XV años de Ada." />
+    <title>Mis XV · Ada · Fiesta</title>
     <link rel="stylesheet" href="style.css" />
     <link rel="shortcut icon" type="image/x-icon" href="icon.png" />
-    <style>
-        /* Asegura el canvas del confeti por encima y sin bloquear clics */
-        #confetti-canvas {
-            position: fixed;
-            inset: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: 9999;
-        }
-    </style>
 </head>
 
 <body>
-    <!-- Confeti -->
-    <canvas id="confetti-canvas"></canvas>
 
     <div class="container">
-        <!--<div class="top"> -->
-        <h1 class="titulo-bloque">Mi Noch<span class="separar-letra">e</span> Soñada</h1>
 
+        <!-- ═══════════════════════════════════
+             PORTADA — HERO TITLE
+        ═══════════════════════════════════ -->
+        <section class="hero-title-section">
+            <img class="crown-icon" src="corona.png" alt="Corona">
+            <span class="hero-mis">Mis</span>
+            <h1 class="hero-xv">XV</h1>
+            <hr class="hero-sep">
+            <span class="hero-nombre">Ada</span>
+            <p class="hero-descripcion">Te invito a celebrar mis quince años</p>
+            <hr class="hero-sep">
+        </section>
 
-        <div class="info">
+        <!-- ═══════════════════════════════════
+             SECCIÓN — NOCHE SOÑADA
+        ═══════════════════════════════════ -->
+        <h1 class="titulo-bloque anim-rise">Mi Noche<span class="separar-letra"> </span>Soñada</h1>
+
+        <div class="info anim-rise-2">
             <div class="info_item">
-                <img src="fecha.png" alt="">
+                <img src="fecha.png" alt="Fecha">
                 <div class="item">
                     <h3>Fecha</h3>
                     <p>Sábado, 8 de Agosto de 2026</p>
@@ -42,15 +45,15 @@
             </div>
 
             <div class="info_item">
-                <img src="hora.png" alt="">
+                <img src="hora.png" alt="Hora">
                 <div class="item">
                     <h3>Hora</h3>
-                    <p>23:59 hs</p>
+                    <p>00:00 hs</p>
                 </div>
             </div>
 
             <div class="info_item">
-                <img src="vestimenta.png" alt="">
+                <img src="vestimenta.png" alt="Vestimenta">
                 <div class="item">
                     <h3>Vestimenta</h3>
                     <p>Casual Elegante</p>
@@ -58,7 +61,7 @@
             </div>
 
             <div class="info_item">
-                <img src="lugar.png" alt="">
+                <img src="lugar.png" alt="Lugar">
                 <div class="item">
                     <h3>Lugar</h3>
                     <p>Salon Impacto</p>
@@ -66,114 +69,142 @@
             </div>
         </div>
 
-        <div class="maps">
-            <a href="https://www.google.com/maps/place/Sal%C3%B3n+Impacto/@-27.4128789,-55.9146069,18.87z/data=!4m6!3m5!1s0x9457bf56cb2f755b:0xec7bf1194a965d0c!8m2!3d-27.4131554!4d-55.9141442!16s%2Fg%2F11gj0_czyc?entry=ttu&g_ep=EgoyMDI2MDcwNS4wIKXMDSoASAFQAw%3D%3D"
-                target="_blank" rel="noopener">ABRIR EN GOOGLE
-                MAPS</a>
+        <div class="maps anim-rise-3">
+            <a href="https://maps.app.goo.gl/v1Bs2rxDdkbMUioS9?g_st=aw"
+                target="_blank" rel="noopener">Abrir en Google Maps</a>
         </div>
 
+        <!-- Separador ornamental -->
+        <div class="ornament-divider anim-fade" aria-hidden="true">
+            <span>✦</span>
+        </div>
+
+        <!-- ═══════════════════════════════════
+             SECCIÓN — CONFIRMACIÓN
+        ═══════════════════════════════════ -->
         <form>
-            <p class="texto-llamado">COMPLETÁ LOS DATOS PARA CONFIRMAR TU PRESENCIA</p>
-            <input id="input-nombre" type="text" placeholder="NOMBRE Y APELLIDO" />
-            <input id="input-invitados" type="number" placeholder="INVITADOS (CONTÁNDOTE A VOS)" min="1" max="20" />
-            <button type="submit">CONFIRMAR</button>
+            <p class="texto-llamado">Confirmá tu presencia</p>
+
+            <div class="campo">
+                <label for="input-nombre">Nombre y Apellido</label>
+                <input id="input-nombre" type="text" placeholder="Como figura en tu documento" autocomplete="name" />
+            </div>
+
+            <div class="campo">
+                <label for="input-invitados">Cantidad de personas</label>
+                <input id="input-invitados" type="number" placeholder="Contándote a vos" min="1" max="20" />
+            </div>
+
+            <button type="submit" class="btn-confirmar">Confirmar asistencia</button>
         </form>
 
-        <div class="gift">
-            <p class="texto-llamado">SI NO SABÉS QUÉ REGALARME PODÉS COLABORAR PARA CUMPLIR MI SUEÑO</p>
-            <div class="cv">
-                <p id="cvu-text">ada.mis15</p>
-                <button id="copy-btn">COPIAR CVU</button>
+        <!-- Separador ornamental -->
+        <div class="ornament-divider anim-fade" aria-hidden="true">
+            <span>✦</span>
+        </div>
+
+        <!-- ═══════════════════════════════════
+             SECCIÓN — ENTRADA / TARJETA
+        ═══════════════════════════════════ -->
+        <div class="entrada">
+            <p class="texto-llamado">Valor de la Tarjeta</p>
+            <div class="entrada-precio">
+                <span class="precio-label">Precio por persona</span>
+                <span class="precio-monto">$15.000</span>
+                <span class="precio-nota">Incluye fiesta</span>
+            </div>
+            <div class="cv-entrada">
+                <p id="entrada-cvu-text">ada.mis15</p>
+                <button id="entrada-copy-btn">Copiar CVU</button>
             </div>
         </div>
 
+        <!-- Separador ornamental -->
+        <div class="ornament-divider anim-fade" aria-hidden="true">
+            <span>✦</span>
+        </div>
+
+        <!-- ═══════════════════════════════════
+             SECCIÓN — BEBIDAS
+        ═══════════════════════════════════ -->
+        <div class="aviso-editorial">
+            <span class="aviso-ornamento">✦ &nbsp; ✦ &nbsp; ✦</span>
+            <svg class="aviso-icono" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M8 22h8M12 17v5M5 2h14l-2 10H7L5 2zM7 12c0 2.76 2.24 5 5 5s5-2.24 5-5"/>
+            </svg>
+            <p class="aviso-titulo">Bebidas</p>
+            <p class="aviso-texto">Para tu comodidad, sentite libre de traer tu propia conservadora con las bebidas que desees disfrutar durante la noche.</p>
+        </div>
+
+        <!-- ═══════════════════════════════════
+             SECCIÓN — REGALO
+        ═══════════════════════════════════ -->
+        <div class="gift">
+            <p class="texto-llamado">Si deseás hacerme un regalo</p>
+            <div class="cv">
+                <p id="cvu-text">ada.mis15</p>
+                <button id="copy-btn">Copiar CVU</button>
+            </div>
+        </div>
+
+        <!-- ═══════════════════════════════════
+             SECCIÓN — COMPARTIR FOTOS
+        ═══════════════════════════════════ -->
         <div class="share">
-            <p class="texto-llamado">PODÉS COMPARTIR LAS FOTOS DE LA FIESTA POR WHATSAPP O AL CORREO</p>
-            <a href="https://wa.me/3765200350" target="_blank" rel="noopener"><button>COMPARTIR POR
-                    WHATSAPP</button></a>
+            <p class="texto-llamado">Compartí los recuerdos de la noche</p>
+            <a href="https://wa.me/3765200350" target="_blank" rel="noopener">
+                <button>Enviar por WhatsApp</button>
+            </a>
             <div class="contact">
-                <h2>CORREO</h2>
+                <h2>Correo electrónico</h2>
                 <p>kym.faustino@gmail.com</p>
             </div>
         </div>
-    </div>
+
+    </div><!-- /container -->
 
     <!-- Música de fondo -->
     <audio id="bg-music" autoplay loop>
         <source src="musica_fondo.mp3" type="audio/mpeg">
-        Tu navegador no soporta audio.
     </audio>
 
-    <!-- Copiar CVU -->
+    <!-- Copiar CVU Regalo -->
     <script>
         document.getElementById("copy-btn").addEventListener("click", function () {
             const cvu = document.getElementById("cvu-text").innerText.trim();
             navigator.clipboard.writeText(cvu).then(() => {
-                alert("CVU copiado");
-            }).catch(err => {
-                console.error("Error al copiar: ", err);
-            });
+                const btn = document.getElementById("copy-btn");
+                const prev = btn.textContent;
+                btn.textContent = "¡Copiado!";
+                setTimeout(() => btn.textContent = prev, 2000);
+            }).catch(err => console.error("Error al copiar:", err));
         });
     </script>
-    <!-- Confeti redondo pastel con 35% opacidad -->
-    <!--<script>
-        const canvas = document.getElementById('confetti-canvas');
-        const ctx = canvas.getContext('2d');
 
-        function resize() {
-            canvas.width = window.innerWidth;
-            canvas.height = window.innerHeight;
-        }
-        resize();
-        window.addEventListener('resize', resize);
+    <!-- Copiar CVU Entrada -->
+    <script>
+        document.getElementById("entrada-copy-btn").addEventListener("click", function () {
+            const cvu = document.getElementById("entrada-cvu-text").innerText.trim();
+            navigator.clipboard.writeText(cvu).then(() => {
+                const btn = document.getElementById("entrada-copy-btn");
+                const prev = btn.textContent;
+                btn.textContent = "¡Copiado!";
+                setTimeout(() => btn.textContent = prev, 2000);
+            }).catch(err => console.error("Error al copiar:", err));
+        });
+    </script>
 
-        function randomColor() {
-            const baseColors = ['#f7cde0', '#f28ca9', '#f7d6c1', '#ffffff', '#d9d9d9'];
-            const hex = baseColors[Math.floor(Math.random() * baseColors.length)];
-            const n = parseInt(hex.slice(1), 16);
-            const r = (n >> 16) & 255, g = (n >> 8) & 255, b = n & 255;
-            return `rgba(${r}, ${g}, ${b}, 0.35)`; // 35% opacidad
-        }
-
-        const confetti = Array.from({ length: 150 }, () => ({
-            x: Math.random() * canvas.width,
-            y: Math.random() * canvas.height - canvas.height,
-            size: Math.random() * 8 + 4,
-            color: randomColor(),
-            speed: Math.random() * 3 + 2
-        }));
-
-        function drawConfetti() {
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-            for (const p of confetti) {
-                ctx.beginPath();
-                ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
-                ctx.fillStyle = p.color;
-                ctx.fill();
-
-                p.y += p.speed;
-                if (p.y > canvas.height) {
-                    p.x = Math.random() * canvas.width;
-                    p.y = -10;
-                }
-            }
-            requestAnimationFrame(drawConfetti);
-        }
-        drawConfetti();
-    </script> -->
-
-    <!-- Forzar autoplay (si el navegador lo permite) -->
+    <!-- Autoplay música -->
     <script>
         window.addEventListener('load', () => {
             const music = document.getElementById("bg-music");
             music.play().catch(() => {
-                // Si el navegador bloquea el autoplay, se habilita en el primer clic/tap
                 document.addEventListener('click', () => music.play(), { once: true });
             });
         });
     </script>
 
-    <!-- Firebase App (init sin analytics) -->
+    <!-- Firebase init -->
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/12.3.0/firebase-app.js";
 
@@ -189,8 +220,9 @@
         initializeApp(firebaseConfig);
     </script>
 
-    <!-- Lógica de Firestore (guardar confirmación) -->
+    <!-- Lógica de confirmación -->
     <script type="module" src="app.js"></script>
+
 </body>
 
 </html>
