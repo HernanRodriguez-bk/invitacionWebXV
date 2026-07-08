@@ -1,8 +1,9 @@
 import { getApp } from "https://www.gstatic.com/firebasejs/12.3.0/firebase-app.js";
 import { getFirestore, collection, addDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/12.3.0/firebase-firestore.js";
 
-const app = getApp();               // usa el app inicializado en index.html
+const app = getApp();               // usa el app inicializado en index.html o fiesta.html
 const db = getFirestore(app);
+const EVENTO = "15-Ada";
 
 // (Opcional para futuro) Si volvés a agregar “No podré asistir”
 const WHATSAPP_PHONE = "5493764000000";
@@ -11,10 +12,18 @@ const form = document.querySelector("form");
 const inputNombre = document.querySelector('form input[type="text"]');
 const inputInvitados = document.querySelector('form input[type="number"]');
 
-async function guardarAsistencia({ nombre, invitados }) {
-    return addDoc(collection(db, "confirmaciones"), {
+// detectamos de que HTML viene la vista
+let tipoDeInvitacion = "primaria";
+if (window.location.pathname.includes("fiesta.html")) {
+    tipoDeInvitacion = "secundaria";
+}
+
+// agregamos tipo como parametro para recibir la info
+async function guardarAsistencia({ nombre, invitados, tipo }) {
+    return addDoc(collection(db, "eventos", EVENTO, "confirmaciones"), {
         nombre,
         invitados,
+        tipoInvitacion: tipo, // guardamos la etiqueta en firestore
         createdAt: serverTimestamp()
     });
 }
@@ -40,7 +49,7 @@ form.addEventListener("submit", async (e) => {
     btn.textContent = "Enviando...";
 
     try {
-        await guardarAsistencia({ nombre, invitados });
+        await guardarAsistencia({ nombre, invitados, tipo: tipoDeInvitacion });
         btn.textContent = "¡Confirmado!";
         form.reset();
     } catch (err) {

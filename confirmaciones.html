@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panel de Confirmaciones - Mis XV Ada</title>
+    <style>
+        :root {
+            --color-primario: #d4af37;
+            /* Dorado */
+            --color-secundario: #333;
+            --fondo: #f9f9f9;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--fondo);
+            color: var(--color-secundario);
+            margin: 0;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        h1 {
+            text-align: center;
+            color: var(--color-secundario);
+            border-bottom: 2px solid var(--color-primario);
+            padding-bottom: 10px;
+        }
+
+        .resumen {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 20px;
+            margin-bottom: 30px;
+        }
+
+        .tarjeta-resumen {
+            background: #fff;
+            border-left: 5px solid var(--color-primario);
+            padding: 15px 25px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        .tarjeta-resumen h3 {
+            margin: 0;
+            font-size: 14px;
+            color: #666;
+            text-transform: uppercase;
+        }
+
+        .tarjeta-resumen p {
+            margin: 10px 0 0 0;
+            font-size: 28px;
+            font-weight: bold;
+            color: var(--color-primario);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th,
+        td {
+            padding: 12px 15px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        th {
+            background-color: #f2f2f2;
+            font-weight: bold;
+        }
+
+        tr:hover {
+            background-color: #fcfcfc;
+        }
+
+        .etiqueta {
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: bold;
+            color: white;
+        }
+
+        .etiqueta.primaria {
+            background-color: #28a745;
+        }
+
+        /* Verde para cena */
+        .etiqueta.secundaria {
+            background-color: #17a2b8;
+        }
+
+        /* Celeste para fiesta */
+
+        .cargando {
+            text-align: center;
+            font-style: italic;
+            color: #888;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <h1>Lista de Invitados - Mis XV Ada</h1>
+
+        <div class="resumen">
+            <div class="tarjeta-resumen">
+                <h3>Total Cena (Misa Blanca)</h3>
+                <p id="total-primaria">0</p>
+            </div>
+            <div class="tarjeta-resumen">
+                <h3>Total Solo Fiesta (Noche Soñada)</h3>
+                <p id="total-secundaria">0</p>
+            </div>
+            <div class="tarjeta-resumen">
+                <h3>Total General (Cena + Fiesta)</h3>
+                <p id="total-general">0</p>
+            </div>
+        </div>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Nombre y Apellido</th>
+                    <th>Cant. Personas</th>
+                    <th>Tipo de Invitación</th>
+                </tr>
+            </thead>
+            <tbody id="cuerpo-tabla">
+                <tr>
+                    <td colspan="3" class="cargando">Cargando invitados...</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/12.3.0/firebase-app.js";
+        import { getFirestore, collection, getDocs, query, orderBy } from "https://www.gstatic.com/firebasejs/12.3.0/firebase-firestore.js";
+
+        // Usamos exactamente tu misma configuración
+        const firebaseConfig = {
+            apiKey: "AIzaSyCy9lLnjc0qUE2JK8roTcbv3BHUJ7vd1V8",
+            authDomain: "invitaciones-premium-a5279.firebaseapp.com",
+            projectId: "invitaciones-premium-a5279",
+            storageBucket: "invitaciones-premium-a5279.firebasestorage.app",
+            messagingSenderId: "564366064988",
+            appId: "1:564366064988:web:923d867f75b2436d605599"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+        const EVENTO = "15-Ada";
+
+        // Referencias al DOM
+        const cuerpoTabla = document.getElementById('cuerpo-tabla');
+        const contadorPrimaria = document.getElementById('total-primaria');
+        const contadorSecundaria = document.getElementById('total-secundaria');
+        const contadorGeneral = document.getElementById('total-general');
+
+        // Función para obtener y dibujar los datos
+        async function cargarInvitados() {
+            try {
+                // Hacemos una consulta ordenando por fecha de creación (los más nuevos abajo)
+                const q = query(collection(db, "eventos", EVENTO, "confirmaciones"), orderBy("createdAt", "asc"));
+                const querySnapshot = await getDocs(q);
+
+                cuerpoTabla.innerHTML = ''; // Limpiamos el "Cargando..."
+
+                let sumaPrimaria = 0;
+                let sumaSecundaria = 0;
+
+                querySnapshot.forEach((doc) => {
+                    const data = doc.data();
+
+                    // Variables para manejar los datos
+                    const nombre = data.nombre || "Sin nombre";
+                    const cantidad = data.invitados || 1;
+                    const tipo = data.tipoInvitacion || "primaria";
+
+                    // Sumamos a los contadores
+                    if (tipo === 'primaria') {
+                        sumaPrimaria += cantidad;
+                    } else if (tipo === 'secundaria') {
+                        sumaSecundaria += cantidad;
+                    }
+
+                    // Preparamos los textos visuales
+                    const textoTipo = tipo === 'primaria' ? 'Cena (20:30hs)' : 'Solo Fiesta (00:00hs)';
+
+                    // Creamos la fila (tr)
+                    const fila = document.createElement('tr');
+                    fila.innerHTML = `
+                        <td>${nombre}</td>
+                        <td>${cantidad}</td>
+                        <td><span class="etiqueta ${tipo}">${textoTipo}</span></td>
+                    `;
+
+                    // Agregamos la fila a la tabla
+                    cuerpoTabla.appendChild(fila);
+                });
+
+                // Actualizamos los números en pantalla
+                contadorPrimaria.innerText = sumaPrimaria;
+                contadorSecundaria.innerText = sumaSecundaria;
+                contadorGeneral.innerText = sumaPrimaria + sumaSecundaria;
+
+                // Si no hay nadie aún
+                if (querySnapshot.empty) {
+                    cuerpoTabla.innerHTML = '<tr><td colspan="3" class="cargando">Aún no hay confirmaciones.</td></tr>';
+                }
+
+            } catch (error) {
+                console.error("Error al cargar invitados:", error);
+                cuerpoTabla.innerHTML = '<tr><td colspan="3" class="cargando" style="color:red;">Error al cargar la base de datos.</td></tr>';
+            }
+        }
+
+        // Ejecutamos la función al cargar la página
+        cargarInvitados();
+    </script>
+</body>
+
+</html>
