@@ -4,239 +4,611 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Panel de Confirmaciones - Mis XV Ada</title>
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+    <meta http-equiv="Pragma" content="no-cache" />
+    <meta http-equiv="Expires" content="0" />
+    <title>Panel de Invitados · Mis XV Ada</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,400&family=Cinzel+Decorative:wght@400;700&display=swap" rel="stylesheet">
+
     <style>
         :root {
-            --color-primario: #d4af37;
-            /* Dorado */
-            --color-secundario: #333;
-            --fondo: #f9f9f9;
+            --gold:        #E5C378;
+            --gold-dim:    #A68141;
+            --gold-border: #8A6D3B;
+            --dark:        #1A0508;
+            --panel:       #2B0A0F;
+            --cream:       #F0E6D2;
+            --glass:       rgba(20, 4, 7, 0.88);
+            --glass-light: rgba(229, 195, 120, 0.05);
+            --font-title:  "Cinzel Decorative", serif;
+            --font-body:   "Cormorant Garamond", serif;
         }
+
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: var(--fondo);
-            color: var(--color-secundario);
-            margin: 0;
-            padding: 20px;
+            min-height: 100svh;
+            font-family: var(--font-body);
+            color: var(--cream);
+            background-color: var(--dark);
+            background-image: url('fondo.png'),
+                linear-gradient(160deg, #1a0508 0%, #2B0A0F 50%, #1a0508 100%);
+            background-repeat: repeat-y;
+            background-position: center top;
+            padding: 40px 16px 64px;
         }
 
-        .container {
-            max-width: 900px;
+        /* ══════════════════════════════
+           WRAPPER
+        ══════════════════════════════ */
+        .wrapper {
+            max-width: 820px;
             margin: 0 auto;
-            background: white;
-            padding: 30px;
-            border-radius: 10px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
-        }
-
-        h1 {
-            text-align: center;
-            color: var(--color-secundario);
-            border-bottom: 2px solid var(--color-primario);
-            padding-bottom: 10px;
-        }
-
-        .resumen {
             display: flex;
-            justify-content: space-around;
-            margin-top: 20px;
-            margin-bottom: 30px;
+            flex-direction: column;
+            gap: 32px;
         }
 
-        .tarjeta-resumen {
-            background: #fff;
-            border-left: 5px solid var(--color-primario);
-            padding: 15px 25px;
-            border-radius: 8px;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        /* ══════════════════════════════
+           HEADER
+        ══════════════════════════════ */
+        .header {
             text-align: center;
+            padding: 28px 0 32px;
+            border-bottom: 1px solid rgba(138,109,59,0.4);
+            position: relative;
         }
 
-        .tarjeta-resumen h3 {
-            margin: 0;
+        .header::before {
+            content: "✦  ✦  ✦";
+            display: block;
             font-size: 14px;
-            color: #666;
+            color: var(--gold-border);
+            letter-spacing: 8px;
+            margin-bottom: 18px;
+        }
+
+        /* Etiqueta superior «Panel de gestión» */
+        .header .eyebrow {
+            display: inline-block;
+            font-family: var(--font-body);
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: 5px;
             text-transform: uppercase;
+            /* fondo oscuro sólido con borde dorado */
+            background: rgba(10, 2, 4, 0.95);
+            border: 1px solid var(--gold-border);
+            color: var(--gold);
+            padding: 6px 20px;
+            border-radius: 30px;
+            margin-bottom: 20px;
+            box-shadow: 0 0 14px rgba(229,195,120,0.15);
         }
 
-        .tarjeta-resumen p {
-            margin: 10px 0 0 0;
-            font-size: 28px;
-            font-weight: bold;
-            color: var(--color-primario);
+        /* Título principal «Mis XV · Ada» */
+        .header h1 {
+            font-family: var(--font-title);
+            font-size: clamp(22px, 5vw, 34px);
+            font-weight: 700;
+            line-height: 1.35;
+            letter-spacing: 3px;
+            /* Degradado dorado en el texto */
+            background: linear-gradient(135deg, #E5C378 0%, #fff8e7 45%, #A68141 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            /* Halo dorado sutil */
+            filter: drop-shadow(0 0 12px rgba(229,195,120,0.35));
         }
 
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 20px;
+        /* Subtítulo «Lista de Invitados» */
+        .header h1 .sub {
+            display: block;
+            font-family: var(--font-body);
+            font-size: clamp(11px, 2.5vw, 14px);
+            font-weight: 400;
+            letter-spacing: 6px;
+            text-transform: uppercase;
+            /* resetear el clip heredado */
+            background: linear-gradient(135deg, #cba153 0%, #E5C378 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-top: 8px;
+            filter: none;
+            opacity: 0.85;
         }
 
-        th,
-        td {
-            padding: 12px 15px;
-            text-align: left;
-            border-bottom: 1px solid #ddd;
+        /* ── Botón Actualizar ── */
+        #btn-refresh {
+            position: absolute;
+            top: 28px;
+            right: 0;
+            font-family: var(--font-body);
+            font-size: 12px;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            /* Fondo oscuro sólido */
+            background: rgba(10, 2, 4, 0.95);
+            color: var(--gold);
+            border: 1px solid var(--gold-border);
+            border-radius: 10px;
+            padding: 10px 18px;
+            cursor: pointer;
+            box-shadow: 0 4px 16px rgba(0,0,0,0.5), inset 0 1px 0 rgba(229,195,120,0.1);
+            transition: background 0.2s ease, box-shadow 0.2s ease, transform 0.15s ease;
         }
+        #btn-refresh:hover {
+            background: rgba(74, 11, 17, 0.98);
+            box-shadow: 0 6px 22px rgba(0,0,0,0.6), 0 0 12px rgba(229,195,120,0.2);
+            transform: translateY(-1px);
+        }
+        #btn-refresh:active  { transform: translateY(0); }
+        #btn-refresh:disabled { opacity: 0.35; cursor: default; transform: none; }
+
+        /* ══════════════════════════════
+           TARJETAS DE TOTALES
+        ══════════════════════════════ */
+        .totales {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 16px;
+        }
+
+        .tarjeta {
+            background: rgba(14, 3, 5, 0.92);
+            border: 1px solid rgba(138,109,59,0.45);
+            border-radius: 18px;
+            padding: 28px 16px 22px;
+            text-align: center;
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.25s ease, box-shadow 0.25s ease;
+        }
+
+        .tarjeta:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+        }
+
+        /* Línea dorada decorativa superior */
+        .tarjeta::after {
+            content: "";
+            position: absolute;
+            inset: 0 0 auto 0;
+            height: 3px;
+            border-radius: 18px 18px 0 0;
+            background: linear-gradient(90deg, transparent, var(--gold), transparent);
+        }
+
+        /* Ícono grande de fondo semitransparente */
+        .tarjeta .icon-bg {
+            font-size: 64px;
+            line-height: 1;
+            opacity: 0.06;
+            position: absolute;
+            bottom: -8px;
+            right: 8px;
+            pointer-events: none;
+            user-select: none;
+        }
+
+        .tarjeta .label {
+            font-size: 10px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--gold-dim);
+            margin-bottom: 14px;
+            display: block;
+        }
+
+        .tarjeta .numero {
+            font-family: var(--font-title);
+            font-size: clamp(40px, 8vw, 58px);
+            font-weight: 700;
+            color: var(--gold);
+            line-height: 1;
+            display: block;
+        }
+
+        .tarjeta .sublabel {
+            font-size: 11px;
+            letter-spacing: 1.5px;
+            color: rgba(240,230,210,0.4);
+            margin-top: 8px;
+            display: block;
+        }
+
+        /* Tarjeta general — un poco más destacada */
+        .tarjeta.total-general {
+            border-color: rgba(229,195,120,0.55);
+            background: rgba(30, 10, 5, 0.95);
+        }
+
+        .tarjeta.total-general .numero {
+            font-size: clamp(48px, 9vw, 68px);
+        }
+
+        /* ══════════════════════════════
+           TABLA / LISTA DE INVITADOS
+        ══════════════════════════════ */
+        .tabla-card {
+            background: rgba(14, 3, 5, 0.92);
+            border: 1px solid rgba(138,109,59,0.45);
+            border-radius: 18px;
+            overflow: hidden;
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            box-shadow: 0 12px 40px rgba(0,0,0,0.6);
+        }
+
+        .tabla-top {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 18px 24px;
+            border-bottom: 1px solid rgba(138,109,59,0.3);
+        }
+
+        .tabla-top h2 {
+            font-family: var(--font-body);
+            font-size: 13px;
+            font-weight: 600;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            color: var(--gold-dim);
+        }
+
+        .badge-total {
+            font-family: var(--font-body);
+            font-size: 12px;
+            letter-spacing: 1px;
+            background: rgba(229,195,120,0.1);
+            border: 1px solid rgba(229,195,120,0.3);
+            color: var(--gold);
+            padding: 4px 14px;
+            border-radius: 20px;
+        }
+
+        /* Tabla */
+        table { width: 100%; border-collapse: collapse; }
+
+        thead tr { background: rgba(26, 5, 8, 0.6); }
 
         th {
-            background-color: #f2f2f2;
-            font-weight: bold;
+            padding: 12px 20px;
+            text-align: left;
+            font-family: var(--font-body);
+            font-size: 10px;
+            font-weight: 600;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: rgba(229,195,120,0.5);
         }
 
-        tr:hover {
-            background-color: #fcfcfc;
+        td {
+            padding: 14px 20px;
+            font-family: var(--font-body);
+            font-size: 17px;
+            color: var(--cream);
+            border-bottom: 1px solid rgba(138,109,59,0.15);
         }
 
+        td.n-col {
+            font-size: 13px;
+            color: rgba(240,230,210,0.35);
+            font-weight: 300;
+            width: 42px;
+        }
+
+        td.personas-col {
+            font-family: var(--font-title);
+            font-size: 20px;
+            color: var(--gold);
+            font-weight: 700;
+            width: 80px;
+            text-align: center;
+        }
+
+        tbody tr:last-child td { border-bottom: none; }
+
+        tbody tr {
+            transition: background 0.2s ease;
+        }
+        tbody tr:hover { background: rgba(229,195,120,0.05); }
+
+        /* Etiquetas */
         .etiqueta {
-            padding: 5px 10px;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            padding: 4px 12px;
             border-radius: 20px;
-            font-size: 12px;
-            font-weight: bold;
-            color: white;
+            font-size: 11px;
+            font-family: var(--font-body);
+            font-weight: 600;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            white-space: nowrap;
         }
 
         .etiqueta.primaria {
-            background-color: #28a745;
+            background: rgba(74, 11, 17, 0.8);
+            border: 1px solid var(--gold-border);
+            color: var(--gold);
         }
 
-        /* Verde para cena */
         .etiqueta.secundaria {
-            background-color: #17a2b8;
+            background: rgba(43, 10, 15, 0.9);
+            border: 1px solid rgba(138,109,59,0.4);
+            color: var(--gold-dim);
         }
 
-        /* Celeste para fiesta */
-
-        .cargando {
+        /* Estado vacío / cargando */
+        .msg-estado {
             text-align: center;
+            font-family: var(--font-body);
             font-style: italic;
-            color: #888;
+            font-size: 16px;
+            color: rgba(240,230,210,0.4);
+            padding: 48px 0;
+        }
+        .msg-estado.error { color: #e57373; }
+
+        /* ══════════════════════════════
+           PIE
+        ══════════════════════════════ */
+        .footer {
+            text-align: center;
+            font-family: var(--font-body);
+            font-size: 11px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: rgba(138,109,59,0.5);
+        }
+
+        /* ══════════════════════════════════════════════
+           RESPONSIVE — todos los dispositivos
+        ══════════════════════════════════════════════ */
+
+        /* ── Tablet horizontal / laptop pequeño (≤1024px) ── */
+        @media (max-width: 1024px) {
+            .wrapper { max-width: 100%; padding: 0 8px; }
+        }
+
+        /* ── Tablet vertical (≤768px) ── */
+        @media (max-width: 768px) {
+            body { padding: 28px 12px 56px; }
+            .header h1 { font-size: clamp(20px, 4vw, 26px); }
+            .tarjeta .numero { font-size: clamp(36px, 7vw, 52px); }
+            th, td { padding: 11px 16px; }
+        }
+
+        /* ── Móvil grande / Android estándar (≤600px) ── */
+        @media (max-width: 600px) {
+            body { padding: 20px 10px 48px; }
+
+            /* Header: botón debajo del título */
+            .header {
+                padding: 20px 0 24px;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                gap: 16px;
+            }
+            #btn-refresh {
+                position: static;
+                width: 100%;
+                max-width: 260px;
+                text-align: center;
+            }
+
+            /* Totales: 2 columnas, el general ocupa todo el ancho */
+            .totales { grid-template-columns: 1fr 1fr; gap: 12px; }
+            .tarjeta.total-general { grid-column: span 2; }
+            .tarjeta { padding: 22px 12px 18px; border-radius: 14px; }
+            .tarjeta .numero { font-size: clamp(34px, 9vw, 48px); }
+
+            /* Tabla: sin columna # ni Tipo en pantallas chicas */
+            th, td { padding: 10px 12px; }
+            th { font-size: 9px; letter-spacing: 2px; }
+            td { font-size: 15px; }
+
+            .etiqueta { font-size: 10px; padding: 3px 9px; }
+            .tabla-card { border-radius: 14px; }
+            .tabla-top { padding: 14px 16px; }
+        }
+
+        /* ── Móvil pequeño / iPhone SE / Android 360px (≤420px) ── */
+        @media (max-width: 420px) {
+            body { padding: 16px 8px 40px; }
+            .wrapper { gap: 20px; }
+
+            .header::before { font-size: 11px; letter-spacing: 5px; }
+            .header .eyebrow { font-size: 10px; padding: 5px 14px; }
+            .header h1 { font-size: clamp(17px, 5.5vw, 22px); letter-spacing: 1.5px; }
+            .header h1 .sub { font-size: 10px; letter-spacing: 4px; }
+
+            .totales { gap: 10px; }
+            .tarjeta { padding: 18px 10px 14px; border-radius: 12px; }
+            .tarjeta .numero { font-size: clamp(30px, 10vw, 42px); }
+            .tarjeta .label  { font-size: 9px; letter-spacing: 2px; }
+
+            /* Ocultar columna # en pantallas muy pequeñas */
+            th:first-child, td.n-col { display: none; }
+            th, td { padding: 9px 10px; font-size: 14px; }
+            .etiqueta { font-size: 9px; padding: 3px 8px; letter-spacing: 1px; }
+        }
+
+        /* ── Pantallas muy pequeñas (≤320px) ── */
+        @media (max-width: 320px) {
+            body { padding: 12px 6px 32px; }
+            .header h1 { font-size: 16px; }
+            .tarjeta .numero { font-size: 28px; }
+            th, td { padding: 8px; font-size: 13px; }
+        }
+
+        /* ── Desktop grande (≥1280px) ── */
+        @media (min-width: 1280px) {
+            .wrapper { max-width: 900px; }
+            .tarjeta { padding: 32px 20px 26px; }
+            td { font-size: 18px; }
         }
     </style>
 </head>
 
 <body>
 
-    <div class="container">
-        <h1>Lista de Invitados - Mis XV Ada</h1>
+<div class="wrapper">
 
-        <div class="resumen">
-            <div class="tarjeta-resumen">
-                <h3>Total Cena (Misa Blanca)</h3>
-                <p id="total-primaria">0</p>
-            </div>
-            <div class="tarjeta-resumen">
-                <h3>Total Solo Fiesta (Noche Soñada)</h3>
-                <p id="total-secundaria">0</p>
-            </div>
-            <div class="tarjeta-resumen">
-                <h3>Total General (Cena + Fiesta)</h3>
-                <p id="total-general">0</p>
-            </div>
+    <!-- HEADER -->
+    <header class="header">
+        <p class="eyebrow">Panel de gestión</p>
+        <h1>Mis XV · Ada<span class="sub">Lista de Invitados</span></h1>
+        <button id="btn-refresh">↻ Actualizar</button>
+    </header>
+
+    <!-- TOTALES -->
+    <section class="totales">
+        <div class="tarjeta">
+            <span class="icon-bg">🕯</span>
+            <span class="label">Misa Blanca</span>
+            <span class="numero" id="total-primaria">–</span>
+            <span class="sublabel">personas</span>
         </div>
+        <div class="tarjeta">
+            <span class="icon-bg">🎉</span>
+            <span class="label">Solo Fiesta</span>
+            <span class="numero" id="total-secundaria">–</span>
+            <span class="sublabel">personas</span>
+        </div>
+        <div class="tarjeta total-general">
+            <span class="icon-bg">👑</span>
+            <span class="label">Total General</span>
+            <span class="numero" id="total-general">–</span>
+            <span class="sublabel">confirmados</span>
+        </div>
+    </section>
 
+    <!-- TABLA -->
+    <section class="tabla-card">
+        <div class="tabla-top">
+            <h2>✦ &nbsp;Confirmaciones</h2>
+            <span class="badge-total" id="badge-count">0 invitados</span>
+        </div>
         <table>
             <thead>
                 <tr>
+                    <th>#</th>
                     <th>Nombre y Apellido</th>
-                    <th>Cant. Personas</th>
-                    <th>Tipo de Invitación</th>
+                    <th style="text-align:center;">Personas</th>
+                    <th>Tipo</th>
                 </tr>
             </thead>
             <tbody id="cuerpo-tabla">
-                <tr>
-                    <td colspan="3" class="cargando">Cargando invitados...</td>
-                </tr>
+                <tr><td colspan="4" class="msg-estado">Cargando invitados…</td></tr>
             </tbody>
         </table>
-    </div>
+    </section>
 
-    <script type="module">
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/12.3.0/firebase-app.js";
-        import { getFirestore, collection, getDocs, query, orderBy } from "https://www.gstatic.com/firebasejs/12.3.0/firebase-firestore.js";
+    <!-- PIE -->
+    <footer class="footer">✦ &nbsp; Mis XV Ada &nbsp; · &nbsp; Panel Privado &nbsp; · &nbsp; 2026 &nbsp; ✦</footer>
 
-        // Usamos exactamente tu misma configuración
-        const firebaseConfig = {
-            apiKey: "AIzaSyCy9lLnjc0qUE2JK8roTcbv3BHUJ7vd1V8",
-            authDomain: "invitaciones-premium-a5279.firebaseapp.com",
-            projectId: "invitaciones-premium-a5279",
-            storageBucket: "invitaciones-premium-a5279.firebasestorage.app",
-            messagingSenderId: "564366064988",
-            appId: "1:564366064988:web:923d867f75b2436d605599"
-        };
+</div>
 
-        const app = initializeApp(firebaseConfig);
-        const db = getFirestore(app);
-        const EVENTO = "15-Ada";
+<script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/12.3.0/firebase-app.js";
+    import { getFirestore, collection, getDocs, query, orderBy } from "https://www.gstatic.com/firebasejs/12.3.0/firebase-firestore.js";
 
-        // Referencias al DOM
-        const cuerpoTabla = document.getElementById('cuerpo-tabla');
-        const contadorPrimaria = document.getElementById('total-primaria');
-        const contadorSecundaria = document.getElementById('total-secundaria');
-        const contadorGeneral = document.getElementById('total-general');
+    const firebaseConfig = {
+        apiKey: "AIzaSyCWqKvjl-rXwxqg5GptYPQioZSdOYto5lk",
+        authDomain: "mis15ada.firebaseapp.com",
+        projectId: "mis15ada",
+        storageBucket: "mis15ada.firebasestorage.app",
+        messagingSenderId: "624723026140",
+        appId: "1:624723026140:web:214aabf050c2ccd3069419"
+    };
 
-        // Función para obtener y dibujar los datos
-        async function cargarInvitados() {
-            try {
-                // Hacemos una consulta ordenando por fecha de creación (los más nuevos abajo)
-                const q = query(collection(db, "eventos", EVENTO, "confirmaciones"), orderBy("createdAt", "asc"));
-                const querySnapshot = await getDocs(q);
+    const app = initializeApp(firebaseConfig);
+    const db  = getFirestore(app);
+    const EVENTO = "15-Ada";
 
-                cuerpoTabla.innerHTML = ''; // Limpiamos el "Cargando..."
+    const cuerpoTabla        = document.getElementById('cuerpo-tabla');
+    const elPrimaria         = document.getElementById('total-primaria');
+    const elSecundaria       = document.getElementById('total-secundaria');
+    const elGeneral          = document.getElementById('total-general');
+    const badgeCount         = document.getElementById('badge-count');
+    const btnRefresh         = document.getElementById('btn-refresh');
 
-                let sumaPrimaria = 0;
-                let sumaSecundaria = 0;
+    async function cargarInvitados() {
+        cuerpoTabla.innerHTML = '<tr><td colspan="4" class="msg-estado">Cargando invitados…</td></tr>';
+        elPrimaria.innerText = elSecundaria.innerText = elGeneral.innerText = '–';
+        badgeCount.innerText = '…';
+        btnRefresh.disabled = true;
+        btnRefresh.textContent = 'Cargando…';
 
-                querySnapshot.forEach((doc) => {
-                    const data = doc.data();
+        try {
+            const q = query(
+                collection(db, "eventos", EVENTO, "confirmaciones"),
+                orderBy("createdAt", "asc")
+            );
+            const snap = await getDocs(q);
 
-                    // Variables para manejar los datos
-                    const nombre = data.nombre || "Sin nombre";
-                    const cantidad = data.invitados || 1;
-                    const tipo = data.tipoInvitacion || "primaria";
+            cuerpoTabla.innerHTML = '';
 
-                    // Sumamos a los contadores
-                    if (tipo === 'primaria') {
-                        sumaPrimaria += cantidad;
-                    } else if (tipo === 'secundaria') {
-                        sumaSecundaria += cantidad;
-                    }
-
-                    // Preparamos los textos visuales
-                    const textoTipo = tipo === 'primaria' ? 'Cena (20:30hs)' : 'Solo Fiesta (00:00hs)';
-
-                    // Creamos la fila (tr)
-                    const fila = document.createElement('tr');
-                    fila.innerHTML = `
-                        <td>${nombre}</td>
-                        <td>${cantidad}</td>
-                        <td><span class="etiqueta ${tipo}">${textoTipo}</span></td>
-                    `;
-
-                    // Agregamos la fila a la tabla
-                    cuerpoTabla.appendChild(fila);
-                });
-
-                // Actualizamos los números en pantalla
-                contadorPrimaria.innerText = sumaPrimaria;
-                contadorSecundaria.innerText = sumaSecundaria;
-                contadorGeneral.innerText = sumaPrimaria + sumaSecundaria;
-
-                // Si no hay nadie aún
-                if (querySnapshot.empty) {
-                    cuerpoTabla.innerHTML = '<tr><td colspan="3" class="cargando">Aún no hay confirmaciones.</td></tr>';
-                }
-
-            } catch (error) {
-                console.error("Error al cargar invitados:", error);
-                cuerpoTabla.innerHTML = '<tr><td colspan="3" class="cargando" style="color:red;">Error al cargar la base de datos.</td></tr>';
+            if (snap.empty) {
+                cuerpoTabla.innerHTML = '<tr><td colspan="4" class="msg-estado">Aún no hay confirmaciones.</td></tr>';
+                elPrimaria.innerText = elSecundaria.innerText = elGeneral.innerText = '0';
+                badgeCount.innerText = '0 invitados';
+                return;
             }
+
+            let sumP = 0, sumS = 0, fila = 1;
+
+            snap.forEach(doc => {
+                const d        = doc.data();
+                const nombre   = d.nombre         || "Sin nombre";
+                const cantidad = d.invitados       || 1;
+                const tipo     = d.tipoInvitacion  || "primaria";
+
+                tipo === 'primaria' ? sumP += cantidad : sumS += cantidad;
+
+                const texto = tipo === 'primaria' ? '🕯 Cena (20:30)' : '🎉 Solo Fiesta';
+
+                const tr = document.createElement('tr');
+                tr.innerHTML = `
+                    <td class="n-col">${fila++}</td>
+                    <td>${nombre}</td>
+                    <td class="personas-col">${cantidad}</td>
+                    <td><span class="etiqueta ${tipo}">${texto}</span></td>
+                `;
+                cuerpoTabla.appendChild(tr);
+            });
+
+            elPrimaria.innerText   = sumP;
+            elSecundaria.innerText = sumS;
+            elGeneral.innerText    = sumP + sumS;
+            badgeCount.innerText   = `${snap.size} confirmación${snap.size !== 1 ? 'es' : ''}`;
+
+        } catch (err) {
+            console.error(err);
+            cuerpoTabla.innerHTML = '<tr><td colspan="4" class="msg-estado error">Error al conectar. Intentá de nuevo.</td></tr>';
+        } finally {
+            btnRefresh.disabled    = false;
+            btnRefresh.textContent = '↻ Actualizar';
         }
+    }
 
-        // Ejecutamos la función al cargar la página
-        cargarInvitados();
-    </script>
+    cargarInvitados();
+    btnRefresh.addEventListener('click', cargarInvitados);
+</script>
+
 </body>
-
 </html>

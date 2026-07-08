@@ -1,0 +1,48 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // =====================================================
+    // REGLA GENERAL: Negar todo acceso por defecto
+    // =====================================================
+    match /{document=**} {
+      allow read, write: if false;
+    }
+
+    // =====================================================
+    // COLECCIÓN: eventos/{eventoId}/confirmaciones
+    //
+    // ESCRITURA (invitados desde index.html y fiesta.html):
+    //   - Permitida sin autenticación, con validación estricta
+    //     de los campos enviados.
+    //
+    // LECTURA (panel confirmaciones.html):
+    //   - Abierta para que el panel funcione sin login.
+    //     La "protección" es por oscuridad de URL (solo el
+    //     cliente conoce la ruta /confirmaciones.html).
+    // =====================================================
+    match /eventos/{eventoId}/confirmaciones/{confirmacionId} {
+
+      // ESCRITURA: abierta pero con validación de datos
+      allow create: if
+        request.resource.data.nombre is string &&
+        request.resource.data.nombre.size() > 0 &&
+        request.resource.data.nombre.size() < 100 &&
+
+        request.resource.data.invitados is int &&
+        request.resource.data.invitados >= 1 &&
+        request.resource.data.invitados <= 20 &&
+
+        request.resource.data.tipoInvitacion in ['primaria', 'secundaria'] &&
+
+        request.resource.data.keys().hasOnly(['nombre', 'invitados', 'tipoInvitacion', 'createdAt']);
+
+      // LECTURA: abierta (el panel no requiere login)
+      allow read: if true;
+
+      // UPDATE y DELETE: prohibidos
+      allow update, delete: if false;
+    }
+  }
+}

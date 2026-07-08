@@ -4,6 +4,9 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+    <meta http-equiv="Pragma" content="no-cache" />
+    <meta http-equiv="Expires" content="0" />
     <title>MisXVAda</title>
     <link rel="stylesheet" href="style.css" />
     <link rel="shortcut icon" type="image/x-icon" href="icon.png" />
@@ -33,7 +36,7 @@
                 <img src="fecha.png" alt="">
                 <div class="item">
                     <h3>Fecha</h3>
-                    <p>Lunes 20 de Julio de 2026</p>
+                    <p>Martes 28 de Julio de 2026</p>
                 </div>
             </div>
 
@@ -41,7 +44,7 @@
                 <img src="hora.png" alt="">
                 <div class="item">
                     <h3>Hora</h3>
-                    <p>20:30 hs</p>
+                    <p>20:00 hs</p>
                 </div>
             </div>
 
@@ -49,12 +52,12 @@
                 <img src="lugar.png" alt="">
                 <div class="item">
                     <h3>Lugar</h3>
-                    <p>Catedral Posadas</p>
+                    <p>Capilla Jesus Nazareno</p>
                 </div>
             </div>
         </div>
         <div class="maps">
-            <a href="https://www.google.com/maps/place/Catedral+de+San+Jos%C3%A9/@-27.3658954,-55.8939791,17z/data=!3m1!4b1!4m6!3m5!1s0x9457be347fb3d147:0x25ba4e668b07cd41!8m2!3d-27.3658954!4d-55.8939791!16s%2Fg%2F1hc3sxklh?entry=ttu&g_ep=EgoyMDI2MDYyOS4wIKXMDSoASAFQAw%3D%3D"
+            <a href="https://www.google.com/maps/place/Capilla+Jes%C3%BAs+Nazareno/@-27.4066971,-55.9155143,18.52z/data=!4m14!1m7!3m6!1s0x9457bf5e438fd68d:0x9a47e449e223bae6!2sCapilla+Jes%C3%BAs+Nazareno!8m2!3d-27.4065483!4d-55.914532!16s%2Fg%2F11t75s533l!3m5!1s0x9457bf5e438fd68d:0x9a47e449e223bae6!8m2!3d-27.4065483!4d-55.914532!16s%2Fg%2F11t75s533l?entry=ttu&g_ep=EgoyMDI2MDcwNS4wIKXMDSoASAFQAw%3D%3D"
                 target="_blank" rel="noopener">ABRIR EN GOOGLE
                 MAPS</a>
         </div>
@@ -75,7 +78,7 @@
                 <img src="hora.png" alt="">
                 <div class="item">
                     <h3>Hora</h3>
-                    <p>20:30 hs</p>
+                    <p>21:00 hs</p>
                 </div>
             </div>
 
@@ -91,20 +94,21 @@
                 <img src="lugar.png" alt="">
                 <div class="item">
                     <h3>Lugar</h3>
-                    <p>Complejo recreativo Iplyc</p>
+                    <p>Salon Impacto</p>
                 </div>
             </div>
         </div>
 
         <div class="maps">
-            <a href="https://maps.app.goo.gl/v1Bs2rxDdkbMUioS9?g_st=aw" target="_blank" rel="noopener">ABRIR EN GOOGLE
+            <a href="https://www.google.com/maps/place/Sal%C3%B3n+Impacto/@-27.4128789,-55.9146069,18.87z/data=!4m6!3m5!1s0x9457bf56cb2f755b:0xec7bf1194a965d0c!8m2!3d-27.4131554!4d-55.9141442!16s%2Fg%2F11gj0_czyc?entry=ttu&g_ep=EgoyMDI2MDcwNS4wIKXMDSoASAFQAw%3D%3D"
+                target="_blank" rel="noopener">ABRIR EN GOOGLE
                 MAPS</a>
         </div>
 
         <form>
             <p class="texto-llamado">COMPLETÁ LOS DATOS PARA CONFIRMAR TU PRESENCIA</p>
-            <input type="text" placeholder="NOMBRE Y APELLIDO" />
-            <input type="number" placeholder="INVITADOS (CONTÁNDOTE A VOS)" />
+            <input id="input-nombre" type="text" placeholder="NOMBRE Y APELLIDO" />
+            <input id="input-invitados" type="number" placeholder="INVITADOS (CONTÁNDOTE A VOS)" min="1" max="20" />
             <button type="submit">CONFIRMAR</button>
         </form>
 
@@ -205,15 +209,14 @@
     <!-- Firebase App (init sin analytics) -->
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/12.3.0/firebase-app.js";
-        import { getFirestore, collection, getDocs, query, orderBy } from "https://www.gstatic.com/firebasejs/12.3.0/firebase-firestore.js";
 
         const firebaseConfig = {
-            apiKey: "AIzaSyCy9lLnjc0qUE2JK8roTcbv3BHUJ7vd1V8",
-            authDomain: "invitaciones-premium-a5279.firebaseapp.com",
-            projectId: "invitaciones-premium-a5279",
-            storageBucket: "invitaciones-premium-a5279.firebasestorage.app",
-            messagingSenderId: "564366064988",
-            appId: "1:564366064988:web:923d867f75b2436d605599"
+            apiKey: "AIzaSyCWqKvjl-rXwxqg5GptYPQioZSdOYto5lk",
+            authDomain: "mis15ada.firebaseapp.com",
+            projectId: "mis15ada",
+            storageBucket: "mis15ada.firebasestorage.app",
+            messagingSenderId: "624723026140",
+            appId: "1:624723026140:web:214aabf050c2ccd3069419"
         };
 
         initializeApp(firebaseConfig);

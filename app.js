@@ -2,28 +2,24 @@ import { getApp } from "https://www.gstatic.com/firebasejs/12.3.0/firebase-app.j
 import { getFirestore, collection, addDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/12.3.0/firebase-firestore.js";
 
 const app = getApp();               // usa el app inicializado en index.html o fiesta.html
-const db = getFirestore(app);
+const db  = getFirestore(app);
 const EVENTO = "15-Ada";
 
-// (Opcional para futuro) Si volvés a agregar “No podré asistir”
-const WHATSAPP_PHONE = "5493764000000";
-
-const form = document.querySelector("form");
-const inputNombre = document.querySelector('form input[type="text"]');
+const form           = document.querySelector("form");
+const inputNombre    = document.querySelector('form input[type="text"]');
 const inputInvitados = document.querySelector('form input[type="number"]');
 
-// detectamos de que HTML viene la vista
+// Detectamos de qué HTML viene la vista
 let tipoDeInvitacion = "primaria";
 if (window.location.pathname.includes("fiesta.html")) {
     tipoDeInvitacion = "secundaria";
 }
 
-// agregamos tipo como parametro para recibir la info
 async function guardarAsistencia({ nombre, invitados, tipo }) {
     return addDoc(collection(db, "eventos", EVENTO, "confirmaciones"), {
         nombre,
         invitados,
-        tipoInvitacion: tipo, // guardamos la etiqueta en firestore
+        tipoInvitacion: tipo,
         createdAt: serverTimestamp()
     });
 }
@@ -31,7 +27,7 @@ async function guardarAsistencia({ nombre, invitados, tipo }) {
 form.addEventListener("submit", async (e) => {
     e.preventDefault();
 
-    const nombre = (inputNombre.value || "").trim();
+    const nombre    = (inputNombre.value    || "").trim();
     const invitados = Number(inputInvitados.value || "1");
 
     if (!nombre) {
@@ -43,20 +39,26 @@ form.addEventListener("submit", async (e) => {
         return;
     }
 
-    const btn = form.querySelector('button[type="submit"]');
+    const btn     = form.querySelector('button[type="submit"]');
     const prevTxt = btn.textContent;
-    btn.disabled = true;
-    btn.textContent = "Enviando...";
+    btn.disabled     = true;
+    btn.textContent  = "Enviando...";
 
     try {
         await guardarAsistencia({ nombre, invitados, tipo: tipoDeInvitacion });
-        btn.textContent = "¡Confirmado!";
+        btn.textContent = "¡Confirmado! ✓";
         form.reset();
+
+        // Restaura el texto original tras 3 segundos
+        setTimeout(() => {
+            btn.textContent = prevTxt;
+            btn.disabled    = false;
+        }, 3000);
+
     } catch (err) {
         console.error(err);
-        alert("No se pudo guardar. Intentá de nuevo.");
+        alert("No se pudo guardar la confirmación. Intentá de nuevo.");
         btn.textContent = prevTxt;
-    } finally {
-        btn.disabled = false;
+        btn.disabled    = false;
     }
 });
